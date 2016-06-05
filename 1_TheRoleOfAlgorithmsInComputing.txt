@@ -1,0 +1,19 @@
+1.1 Algorithms
+
+Algorithm is any well-defined computational procedure that takes some value, or set of valuesm as input and produces some value, or set of valuesm as output. It is a tool forr solving a well-specified computational problem.
+
+An algoithm is said to be correct if, for every input instance, it halts with the correct output.
+
+Two characteristics that are common to may interesting algorithmic problems:
+	- They have many candidate solutions, the overwhelming majority of which do not solve the problem at hand. Finding one that does, or one that is "best," can present a challenge.
+	- They have practical applications.
+
+Data structures - a way to store and organize data in order to facilitate access and modifications.
+
+Usual measure of efficiency is speed - how long an algorithm takes to produce its result.
+
+NP-complete - no known solutions for these problems
+
+Conves hull - Smallest convex polygon containing the points. 
+
+1.2 Algorithms as a technology

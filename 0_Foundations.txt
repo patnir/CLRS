@@ -1,0 +1,14 @@
+Chapter 1 - Overview of algorithms and their place in modern computing systems
+
+Chapter 2 - Solve the problem of sorting through two techniques - 
+	Insertion sort - incremental approach
+	Merge sort - recursive approach, "Divide and Conquer"
+Develop notation to express running times
+
+Chapter 3 - Asymptotic notation = bounding algorithm runtimes from above and/or below
+OTher mathematicl notation used in the book
+
+Chapter 4 - More divide and conquer, used in multiplying two square matrices
+SOlving recurrences - master method
+
+Chapter 5 - Introduction to probabilits analysis and randomized algorithms
