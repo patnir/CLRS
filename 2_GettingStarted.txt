@@ -1,0 +1,60 @@
+2.1-3:
+
+LINEAR-SEARCH(A, v)
+
+check = 0
+for i = 1 to A.length
+	if A[i] == v:
+		check += 1
+		return i
+return NIL
+
+2.2 Analyzing Algorithms
+
+Predicting the resources that the algorithm requireds.
+The resources include:
+	- Computational time
+	- Memory
+	- COmmunication band-width
+	- Computer Hardware
+Generic one-processor, random-access machine (RAM) model of computation as the implementation technology. No concurrent operations. 
+
+Treat computation of 2^k as a constant-time operation when k is a smal enough positive integer..
+
+Analyzing an algorithm using RAM model requires the following tools:
+	- combinatorics
+	- probability theory
+	- algebraic dexterity
+	- idetifying the most signigicant terms in a formula
+
+Analysis of insertion sort
+Can take different amounts of time to sort two input sequences of the same size on how sorted they already are
+Input size = Defintion dependon on the problem being studied. Usually means number of items in the input (for sorting or discrete Fourier transforms). Could mean total number of bits (for multiplying two integers). 
+Running time = number or operations or "steps" executed. 
+
+Order of growth
+	Ignore actual cost of each statement
+	Rate of rowth, or Order of growth is of prime interest
+	Insertion sort has a worst-case running time of theta of n-squared
+	One algorithm is more efficient than another if its worst case running time as a lower order of growth
+	Large number of inputs
+
+2.3 Designing Algorithms
+
+Insertion sort - incremental approach
+
+Divide and conquer:
+Running times are often easily determined
+Uses recursion
+Break a problem into several subproblems that are similar to the original problem but smaller in size, solve the subproblems recursively, and then combine these solutions to create a solution to the original problem. 
+
+	- Divide the problem intoa number of sub problems that are smaller instances of the same problem
+	- Conquer the subproblems by solving them recursively. If the subproblem sizes are small enough, however, just solve the subprobems in a straightforwards manner
+	- Combine the solutions to the subproblems into the solution for the original problem
+
+The merge sort algorithm foolows the paradigm
+
+	- Divide the n-element sequence to the sorted into two subsequences of n / 2 elements each
+	- Conquer the subproblems by solving them recursively. If the subproblem sizes are small enough, however, just solve the subprobems in a straightforwards manner
+	- Combine the solutions t the subproblems into the solution for the original problem
+
