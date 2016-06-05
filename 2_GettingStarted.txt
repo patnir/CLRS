@@ -54,7 +54,12 @@ Break a problem into several subproblems that are similar to the original proble
 
 The merge sort algorithm foolows the paradigm
 
-	- Divide the n-element sequence to the sorted into two subsequences of n / 2 elements each
-	- Conquer the subproblems by solving them recursively. If the subproblem sizes are small enough, however, just solve the subprobems in a straightforwards manner
-	- Combine the solutions t the subproblems into the solution for the original problem
+	- Divide: Divide the n-element sequence to the sorted into two subsequences of n / 2 elements each
+	- Conquer: Sort the two subsequences recursively using merge sort
+	- Combine: Merge the two sorted subsequences to produce the sorted answer
+
+
+The recusion "bottoms out" when the sequence to be sorted has length 1
+The key operation of the merge sort algorithm is merging of two sorted sequences in the "combine" step.
+
 
