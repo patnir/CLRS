@@ -62,4 +62,40 @@ The merge sort algorithm foolows the paradigm
 The recusion "bottoms out" when the sequence to be sorted has length 1
 The key operation of the merge sort algorithm is merging of two sorted sequences in the "combine" step.
 
+The merge is done by calling MERGE(A, p, q, r) where
+	A - is the array
+	p, q, and r are indices into the array
+	Assumption is made that A[p..q] and A[q + 1..r] are sorted
+	It merges them to a single sorted array A[p..r]
+	The marge takes time theta(n), n = r - p + 1
 
+Pseudocode:
+
+MERGE(A, p, q, r)
+
+	n1 = q - p + 1 // length of array A[p..q]
+	n2 = r - q // length of array A[q + 1..r]
+	let L[1..n1 + 1] and R[1..n2 + 1] be new arrays // create new arrays
+	for i = 1 to n1 
+		L[i] = A[p + i - 1]
+	for j = 1 to n2
+		R[j] = A[q + j]
+	L[n1 + 1] = special
+	R[n2 + 1] = special
+
+	i = 1
+	j = 1
+	for k = p to r
+		if L[i] <= R[j]
+			A[k] = L[i]
+			i = i + 1
+		else 
+			A[k] = R[j]
+			j = j + 1
+
+MERGE-SORT(A, p, r)
+	if p < r
+		q = [(p + r) / 2]
+		MERGE-SORT(A, p, q)
+		MERGE-SORT(A, q + 1, r)
+		MERGE(A, p, q, r)
