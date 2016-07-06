@@ -1,0 +1,31 @@
+Chapter 4: Divide and Conquer
+
+Merge sort uses this technique
+
+	We solve a problem recursively
+	Apply the following three steps at each level of recursion:
+		Divide the problem into a number of subproblems that are smaller instances of the same problem
+		Conquer the subproblems by solving them recursively. If the subproblem sizes are small enougj, however, just solve the subproblems in a straightforward manner
+		Combine the solutions of the subproblems into the solution for the original problem
+
+Recursive case "bottoms out" to the base case
+
+Recurrences:
+
+	They give us a natural way to characterize the running times of divide-and-conquer algorithms. It is an equation or inequality that describes a function in terms of its value on smaller inputs. 
+	Three methodss for solving recurrences (for obtaining bounds on the solution (big-O)):
+		The substitution method: We guesss a bound and then use mathematical induction to prove our guess is correct
+		The recursion-tree method converts the recurrence into a tree whose nodes represent the cost incurred a various levels of the recursion
+		TThe master method the provides recurrences of the form: 
+			T(n) = aT(n/b) + f(n)
+	There are a alot of technicalities when coming up with the recurrences, like quantifying the coundary condidtions, floors and ceilings; however, the important thing to consider is to look a the order of growth of that algorithm. 
+
+The maximum subarray problem:
+	Brute force solution:
+		Find every possible par of buy and sell dates leading to n^2 function
+	A transformation:
+		Consider a daily change in price
+		We can to find the continguous subarray of A whose values have the largest sum: maximum subarray
+	A solution using divide and conquer:
+
+Page 70 (91 of 1313)
