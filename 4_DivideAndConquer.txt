@@ -27,5 +27,10 @@ The maximum subarray problem:
 		Consider a daily change in price
 		We can to find the continguous subarray of A whose values have the largest sum: maximum subarray
 	A solution using divide and conquer:
-
-Page 70 (91 of 1313)
+		Divide the subarray into two subarrays of equal size
+		The maximum subarray must lie in exactly one of the following places:
+			In the higher subarray, 
+			In the lower subarray
+			Or in both
+		We can also find the maximum sub-array of the broken up array, therefore making two subproblems of smaller instances.
+		Then we need to find the maximum subarray that crosses teh midpoint and then take a subarray with the largest sum of the three. 
