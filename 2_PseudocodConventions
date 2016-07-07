@@ -1,0 +1,9 @@
+1) Indentation indiactes block structure
+2) Loop:
+	a) Counter retains its value after exiting the loop. After a for loop, the counter is of the value that first exceeded the for loop bound
+	b) to: increment counter
+	   downto: decrement counter
+3) // is a comment
+4) i = j = e: multiple assignment, i and j are assigned the value of e
+5) A[1..j] indicates teh subarray of A consisting of the j elements A[1], A[2], ..., A[j]
+6)Arrays index starts at one and ends at the length of the array
