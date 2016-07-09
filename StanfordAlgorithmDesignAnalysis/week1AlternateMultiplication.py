@@ -8,11 +8,12 @@ Created on Sat Jul 09 17:26:00 2016
 # Alternate approach to multiply two numbers:
 import math 
 
-# multiplying two numbers with the same number of digits
 def recMul(x, y):
-    digits = numberOfDigits(x)
+    if x < y:
+        digits = numberOfDigits(y)
+    else:
+        digits = numberOfDigits(x)
     
-    # base case: when both numbers are single digit
     if digits == 1:
         return int(x * y)
     
@@ -25,7 +26,11 @@ def recMul(x, y):
     d = int(y % math.pow(10, digits / 2))
     print "d", d
     
-    result = int(math.pow(10, digits) * recMul(a, c) + math.pow(10, digits / 2) * (recMul(a, d) + recMul(b, c)) + recMul(b, d))
+    ac = recMul(a, c)
+    bd = recMul(b, d)
+    adPcb = recMul(a + b, c + d) - ac - bd # sum of (ad + bc) = (a+b) * (c + d) - ac - bd
+    
+    result = int(math.pow(10, digits) * ac + math.pow(10, digits / 2) * adPcb + bd)
     
     return result
 
@@ -38,4 +43,4 @@ def numberOfDigits(x):
     
     return count
     
-print recMul(56, 78)
+print recMul(4, 567)
