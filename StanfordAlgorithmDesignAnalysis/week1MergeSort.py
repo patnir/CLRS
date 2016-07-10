@@ -5,7 +5,7 @@ Created on Wed Jul 06 20:25:57 2016
 @author: Rahul Patni
 """
 # Merge Sort In Python
-
+import random
 
 # Merging and returning two sorted arrays
 def MergeTwoArrays(A, B):
@@ -54,5 +54,11 @@ def MergeSort(A, p, r):
 
 print MergeTwoArrays([1, 4, 5, 8], [2, 3, 6, 7, 9])
 print Merge([100, 6, 7, 8, 9, 1, 2, 3, 4, 5, 120], 1, 4, 9)
-A = [1, 4, 5, 2, 3, 6, 7, 8, 9]
+
+a = int(raw_input("Enter number of elements in array "))
+A = [None] * a
+for i in range(a):
+    A[i] = random.randint(0, 100)
+    
+print A
 print MergeSort(A, 0, len(A) - 1)
