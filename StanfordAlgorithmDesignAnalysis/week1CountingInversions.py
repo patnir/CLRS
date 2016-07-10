@@ -34,7 +34,7 @@ def CountAndMerge(A, p, q, r):
     j = 0
     inversions = 0
     for k in range(p, r + 1):
-        if j == len(C) or (i < len(B) and B[i] < C[j]):
+        if j == len(C) or (i < len(B) and B[i] <= C[j]):
             A[k] = B[i] 
             i += 1
         else:
@@ -55,7 +55,7 @@ def CountAndSort(A, p, r):
         A, z = CountAndMerge(A, p, q, r)
     return B, x + y + z
 
-a = 10
+a = 100
 
 A = [None] * a
 
