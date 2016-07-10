@@ -68,3 +68,4 @@ print CountingInversionsBF(A, len(A))
 
 print CountAndSort(B, 0, len(B) - 1)[1]
 
+print B
