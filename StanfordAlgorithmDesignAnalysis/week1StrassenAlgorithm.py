@@ -5,6 +5,17 @@ Created on Sun Jul 10 19:42:14 2016
 @author: Rahul Patni
 """
 
+import numpy as np
+
+def PrintArray(array):
+    for i in array:
+        print i
+
+def MakeSqureMatrix(dim):
+    mat = []
+    [mat.append([None] * dim) for num in range(dim)]
+    return mat
+
 # Strassen's algorithm to multiply two NxN matrices
 def Mul22(X, Y):
     a = X[0][0]
@@ -25,12 +36,49 @@ def Mul22(X, Y):
     return [[p5 + p4 - p2 + p6, p1 + p2], [p3 + p4, p1 + p5 - p3 - p7]]
 
 def MulMat(X, Y):
-    if len(X) == 2:
+    dim = len(X)
+    if dim == 2:
         return Mul22(X, Y)
-    return
+    halfDim = int(dim * 0.5)
+    A = MakeSqureMatrix(halfDim)
+    B = MakeSqureMatrix(halfDim)
+    C = MakeSqureMatrix(halfDim)
+    D = MakeSqureMatrix(halfDim)
+    E = MakeSqureMatrix(halfDim)
+    F = MakeSqureMatrix(halfDim)
+    G = MakeSqureMatrix(halfDim)
+    H = MakeSqureMatrix(halfDim)
+    for i in range(halfDim):
+        for j in range(halfDim):
+            A[i][j] = X[i][j]           
+            B[i][j] = X[i + halfDim][j]
+            C[i][j] = X[i][j + halfDim]
+            D[i][j] = X[i + halfDim][j + halfDim]
+            E[i][j] = Y[i][j]           
+            F[i][j] = Y[i + halfDim][j]
+            G[i][j] = Y[i][j + halfDim]
+            H[i][j] = Y[i + halfDim][j + halfDim]
+    print MulMat(A, E)
+    print MulMat(B, G)
+    part1 = np.add(MulMat(A, E), MulMat(B, G))
+    part2 = np.add(MulMat(A, F), MulMat(B, H))
+    part3 = np.add(MulMat(C, E), MulMat(D, G))
+    part4 = np.add(MulMat(C, F), MulMat(D, H))
+    product = MakeSqureMatrix(dim)
+    for i in range(dim):
+        for j in range(dim):
+            if i < halfDim and j < halfDim:
+                product[i][j] = part1[i][j]
+            elif i >= halfDim and j >= halfDim:
+                product[i][j] = part4[i - halfDim][j - halfDim]
+            elif i >= halfDim and j < halfDim:
+                product[i][j] = part2[i - halfDim][j]
+            else:
+                product[i][j] = part3[i][j - halfDim]
+    return product
     
 
-X = [[1, 2],[3, 4]]
-Y = [[5, 6],[7, 8]]
+#X = [[1, 2],[3, 4]]
+#Y = [[5, 6],[7, 8]]
 
-print MulMat(X, Y)
+PrintArray(MulMat(np.ones([4, 4]), np.ones([4, 4])))
