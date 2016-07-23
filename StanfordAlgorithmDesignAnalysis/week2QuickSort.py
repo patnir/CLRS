@@ -10,27 +10,31 @@ Created on Sat Jul 23 11:46:39 2016
 # A : array to be sorted
 # n : length of the array to be sorted
 
-def ChoosePivot(A, n):
+def ChoosePivot(A):
     # For now, returning 1
     return 0
 
-def QuickSort(A, n):
-    p = ChoosePivot(A, n)
-    J = []
+def QuickSort(A):
+    if len(A) <= 1:
+        return A
+    p = ChoosePivot(A)
+    B = []
+    C = []
     print A
     for i in A:
         if i < A[p]:
-            J.append(i)
-    J.append(A[p])
+            B.append(i)
     for i in A:
         if i > A[p]:
-            J.append(i)
-    print J
-#    B = []    
-#    C = []
-#    QuickSort(B, 1)
-#    QuickSort(C, 1)
-    return
+            C.append(i)
+    B = QuickSort(B)
+    C = QuickSort(C)
+    J = []
+    [J.append(x) for x in B]
+    J.append(A[p])
+    [J.append(x) for x in C]
+    return J
     
 A = [3,8,2,5,1,4,7,6]
-QuickSort(A, len(A))
+A = QuickSort(A)
+print A
