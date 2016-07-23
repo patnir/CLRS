@@ -11,14 +11,13 @@ import random
 # A : array to be sorted
 # n : length of the array to be sorted
 
-def ChoosePivot(A):
-    # For now, returning 1
-    return 0
+def ChoosePivot(A, left, right):
+    return random.randint(left, right)
 
 def QuickSortNoMem(A):
     if len(A) <= 1:
         return A
-    p = ChoosePivot(A)
+    p = ChoosePivot(A, 0, 0)
     B = []
     C = []
     for i in A:
@@ -40,9 +39,10 @@ def QuickSort(A, left, right):
         return
     i = left + 1
     j = left + 1
-    pivot = A[left]
+    pivot = ChoosePivot(A, left, right)
+    Swap(A, pivot, left)
     while j <= right:
-        if A[j] < pivot:
+        if A[j] < A[left]:
             Swap(A, i, j)
             i += 1
         j += 1
