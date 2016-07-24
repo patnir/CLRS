@@ -12,7 +12,8 @@ import random
 # n : length of the array to be sorted
 
 def ChoosePivot(A, left, right):
-    return random.randint(left, right)
+    #return random.randint(left, right)
+    return int((left + right) / 2)
 
 def QuickSortNoMem(A):
     if len(A) <= 1:
@@ -46,8 +47,8 @@ def QuickSort(A, left, right):
             Swap(A, i, j)
             i += 1
         j += 1
-    print A
     Swap(A, left, i - 1)
+    print A
     QuickSort(A, left, i - 2)
     QuickSort(A, i, right)
     return
@@ -58,10 +59,11 @@ def Swap(A, i, j):
     A[j] = temp
     return
     
-length = 10
-A = []
-[A.append(random.randint(0, 100)) for i in range(length)]
+#length = 10
+#A = []
+#[A.append(random.randint(0, 100)) for i in range(length)]
 # A = [3, 8, 2, 5, 1, 4, 7, 6]
+A = [1, 2, 3, 4, 5, 6]
 print A
 QuickSort(A, 0, len(A) - 1)
 print A
