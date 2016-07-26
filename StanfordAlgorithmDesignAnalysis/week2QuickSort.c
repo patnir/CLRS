@@ -27,16 +27,16 @@ void swap(int *A, int a, int b)
 
 int choosePivot(int *A, int left, int right) 
 {
-	return (int) ((left + right) / 2);
+	return (int)((left + right) / 2.0);
 }
 
-void quickSort(int *A, int left, int right)
+void quickSort(int *A, int left, int right, int length)
 {
 	if (left >= right) {
 		return;
 	}
 	int i = left + 1;
-	int j = right + 1;
+	int j = left + 1;
 	int pivot = choosePivot(A, left, right);
 	swap(A, pivot, left);
 	while (j <= right) {
@@ -47,13 +47,19 @@ void quickSort(int *A, int left, int right)
 		j += 1;
 	}
 	swap(A, left, i - 1);
-	quickSort(A, left, i - 2);
-	quickSort(A, i, right);
+	printArray(A, length);
+	quickSort(A, left, i - 2, length);
+	quickSort(A, i, right, length);
 }
 
 int main(int argc, char **argv)
 {
-	int length = 8;
+	if (argc != 2) {
+		fprintf(stderr, "Enter length of array.\n");
+		return EXIT_FAILURE;
+	}
+	int length = atoi(argv[1]);
+
 	int *A = (int*)malloc(length * sizeof(int));
 	
 	if (A == NULL) {
@@ -62,7 +68,7 @@ int main(int argc, char **argv)
 
 	randomInitialization(A, length);
 	printArray(A, length);
-	quickSort(A, 0, length - 1);
+	quickSort(A, 0, length - 1, length);
 	printArray(A, length);
 	free(A);
 	return EXIT_SUCCESS;
