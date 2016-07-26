@@ -31,6 +31,19 @@ def Merge(A):
         C.append(A[k])
     return Merge(C)
     
-A = [1, 2, 3, 4, 15, 10, 9, 8, 7, 0]
-
-print Merge(A)
+def getInput(n):
+    A = []
+    #n = int(raw_input("Enter a positive integer"))
+    for i in range(n):
+        A.append(i + 1)
+    for i in reversed(range(n)):
+        A.append(i)
+    print A
+    return A
+    
+def main():
+    A = getInput(200)
+    print Merge(A)
+    
+if __name__ == "__main__":
+    main()
