@@ -13,8 +13,22 @@ def initializeGraph():
         graph[i] = []
     return graph
 
+def loadGraph(graph):
+    filename = "MinCut.txt"
+    fptr = open(filename)
+    for line in fptr:
+        i = line.split("\t")
+        key = int(i[0])
+        print "key", key
+        for x in range(1, len(i)):
+            if i[x] != "\n":
+                graph[key].append(int(i[x]))
+            
+
 def main():
     graph = initializeGraph()
+    print graph
+    loadGraph(graph)
     print graph
     return
     
