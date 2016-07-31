@@ -34,19 +34,36 @@ def randomizedContraction(graph):
             z = graph[x][y]
             print "z", z
             print "x", x
-            delKey(graph, x)
-            replaceKey(graph, z, x)
+            combine(graph, z, x)
+            delKey(graph, z)
             i += 1
+            removeSelfLoops(graph, x)
         else:
             continue
     return
 
-def replaceKey(graph, toReplace, node):
-    for i in range(1, len(graph) + 1):
+def removeSelfLoops(graph, node):
+    while node in graph[node]:
+        indexToRemove = graph[node].index(node)
+        graph[node].pop(indexToRemove)
+
+def combine(graph, toReplace, node):
+    i = graph[toReplace]
+    for j in i:
+        if j not in graph[node]:
+            graph[node].append(j)
+    for i in range(1, 201):
         if i in graph:
-            if toReplace in graph[i]:
-                indexToReplace = graph[i].index(toReplace)
-                graph[i][indexToReplace] = node
+            while (True):
+                if toReplace in graph[i]:
+                    print toReplace
+                    print node
+                    indexToReplace = graph[i].index(toReplace)
+                    print "index", indexToReplace
+                    graph[i][indexToReplace] = node
+                else:
+                    break
+
 
 def delKey(graph, key):
     del graph[key]
