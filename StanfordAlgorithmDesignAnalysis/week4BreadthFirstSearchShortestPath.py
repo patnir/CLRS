@@ -34,12 +34,12 @@ def loadGraph():
     fptr = open(filename)
     for line in fptr:
         i = line.split("\t")
-        graph[i[0]] = [[], [False], [None]]
+        graph[i[0]] = [[], False, None]
         for x in range(1, len(i)):
             i[x] = i[x].rstrip()
             if i[x] != "\n":
                 if i[x] not in graph:
-                    graph[i[x]] = [[],[False], [None]]
+                    graph[i[x]] = [[], False, None]
                 graph[i[0]][0].append(i[x])
     return graph
                 
@@ -49,36 +49,28 @@ def printGraph(graph):
         print i, graph[i]
     return
     
-def BFS2(graph, start, target):
-    q = Queue()
-    q.enqueue(graph[start])
-    graph[start][len(graph[start]) - 1] = True
-    prevDist = 0
-    if target == start:
-        return prevDist
-    while q.size != 0:
-        node = q.dequeue()
-        searches= 0
-        print node
-        for i in range(0, len(node) - 1):
-            print "node", node[i]
-            if graph[node[i]][len(graph[node[i]]) - 1] == False:
-                graph[node[i]][len(graph[node[i]]) - 1] = True
-                thisDist = prevDist + 1
-                print "graph node" 
-                searches += 1
-                if node[i] == target:
-                    return thisDist
-                q.enqueue(graph[node[i]])
-        prevDist += 1
-    return -1
   
 def BFS(graph, start, target):
-    return
+    if start == target:
+        return 0
+    q = Queue()
+    q.enqueue(start)
+    graph[start][1] = True
+    graph[start][2] = 0
+    while q.size != 0:
+        node = q.dequeue()
+        for i in graph[node][0]:
+            if graph[i][1] == False:
+                graph[i][1] = True
+                graph[i][2] = graph[node][2] + 1
+                if i == target:
+                    return graph[i][2]
+                q.enqueue(i)
+    return "yolo"
                   
 def main():
     graph = loadGraph()
     printGraph(graph)  
-    # print BFS(graph, 's', 'e')
+    print BFS(graph, 's', 'e')
 if __name__ == "__main__":
     main()
