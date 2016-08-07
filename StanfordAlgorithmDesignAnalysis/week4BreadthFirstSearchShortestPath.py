@@ -30,7 +30,7 @@ class Queue():
 
 def loadGraph():
     graph = dict()
-    filename = "Graph1BFSShortestPath.txt"
+    filename = "Graph2BFSShortestPath.txt"
     fptr = open(filename)
     for line in fptr:
         i = line.split("\t")
