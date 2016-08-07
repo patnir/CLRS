@@ -34,41 +34,51 @@ def loadGraph():
     fptr = open(filename)
     for line in fptr:
         i = line.split("\t")
-        graph[i[0]] = []
+        graph[i[0]] = [[], [False], [None]]
         for x in range(1, len(i)):
             i[x] = i[x].rstrip()
             if i[x] != "\n":
                 if i[x] not in graph:
-                    graph[i[x]] = []
-                graph[i[0]].append(i[x])
-        graph[i[0]].append(False)
+                    graph[i[x]] = [[],[False], [None]]
+                graph[i[0]][0].append(i[x])
     return graph
                 
 def printGraph(graph):
     keys = graph.keys()
     for i in keys:
-        if len(graph[i]) == 0:
-            graph[i].append(False)
         print i, graph[i]
     return
     
-def BFS(graph, start, target):
+def BFS2(graph, start, target):
     q = Queue()
     q.enqueue(graph[start])
     graph[start][len(graph[start]) - 1] = True
+    prevDist = 0
+    if target == start:
+        return prevDist
     while q.size != 0:
         node = q.dequeue()
+        searches= 0
         print node
         for i in range(0, len(node) - 1):
+            print "node", node[i]
             if graph[node[i]][len(graph[node[i]]) - 1] == False:
                 graph[node[i]][len(graph[node[i]]) - 1] = True
+                thisDist = prevDist + 1
+                print "graph node" 
+                searches += 1
+                if node[i] == target:
+                    return thisDist
                 q.enqueue(graph[node[i]])
-    printGraph(graph)
+        prevDist += 1
+    return -1
+  
+def BFS(graph, start, target):
     return
-          
+                  
 def main():
     graph = loadGraph()
     printGraph(graph)  
-    BFS(graph, 's', 'e')
+    # print BFS(graph, 's', 'e')
 if __name__ == "__main__":
     main()
