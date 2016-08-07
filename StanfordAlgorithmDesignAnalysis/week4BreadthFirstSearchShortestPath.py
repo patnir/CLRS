@@ -55,9 +55,15 @@ def printGraph(graph):
 def BFS(graph, start, target):
     q = Queue()
     q.enqueue(graph[start])
+    graph[start][len(graph[start]) - 1] = True
     while q.size != 0:
         node = q.dequeue()
         print node
+        for i in range(0, len(node) - 1):
+            if graph[node[i]][len(graph[node[i]]) - 1] == False:
+                graph[node[i]][len(graph[node[i]]) - 1] = True
+                q.enqueue(graph[node[i]])
+    printGraph(graph)
     return
           
 def main():
