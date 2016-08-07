@@ -63,18 +63,17 @@ def delKey(graph, key):
 def main():
     originalGraph = initializeGraph()
     loadGraph(originalGraph)
-    totalIterations = int(len(originalGraph) * len(originalGraph) * math.log(len(originalGraph)))
+    totalIterations = int(len(originalGraph) * math.log(len(originalGraph)))
     minimumCut = sys.maxint
     for i in range(totalIterations):
         print "i:", i, "total:", totalIterations
         graph = copy.deepcopy(originalGraph)
-        print "asdf"
         randomizedContraction(graph)
-        total = len(graph[graph.keys()[1]]) + len(graph[graph.keys()[0]])
-        print total
+        total = len(graph[graph.keys()[1]])
         if total < minimumCut:
             minimumCut = total
-    print minimumCut
+            print minimumCut
+    print "finished", minimumCut
     return
     
 if __name__ == "__main__":
