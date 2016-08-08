@@ -23,11 +23,11 @@ def loadGraph():
     return graph
     
 # Number of nodes finished exploring
-t
+t = 0
 
 # most recent vertes from which DFS was called
 # leader for second pass
-s
+s = None
 
 def resetSearch(graph):
     for i in graph.keys():
@@ -41,10 +41,14 @@ def DFSLoop(graph):
         if graph[i][1] == False:
             DFS(graph, i)
     resetSearch(graph)
+    lGraph = leaderGraph(graph)
+    printGraph(lGraph)
     for i in range(len(graph), 0, -1):
-        if graph[i][1] == False:
-            s = i
-            DFS2(graph, i)
+        check = lGraph[i]
+        print check
+        if graph[check][1] == False:
+            s = check
+            DFS2(graph, check)
     return
 
 def DFS2(graph, start):    
@@ -78,15 +82,13 @@ def countStrongComponents():
 def leaderGraph(graph):
     g = dict()
     for i in graph.keys():
-        tail = graph[i][2]
-        
+        g[i] = graph[i][2]
     return g
     
 def main():
     graph = loadGraph()
     DFSLoop(graph)
     printGraph(graph)
-#    lGraph = leaderGraph(graph)
 #    printGraph(lGraph)
     
     
