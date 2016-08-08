@@ -33,10 +33,50 @@ def printGraph(graph):
     for i in keys:
         print i, graph[i]
     return 
-    
+
+t
+
+s
+
+def DFSLoop(graph):
+    global t
+    t = 0
+    global s
+    s = None
+    for i in range(len(graph), 0, -1):
+        if graph[i][2] == False:
+            DFS(graph, i, 0)
+    resetSearch(graph)
+    for i in range(len(graph), 0, -1):
+        if graph[i][2] == False:
+            s = graph[i][3]
+            DFS2(graph, i, 1)            
+
+def DFS2(graph, start, direction):
+    global s
+    graph[start][4] = s
+    graph[start][2] = True
+    for i in graph[start][direction]:
+        if graph[i][2] == False:
+            DFS2(graph, i, direction)
+    return
+
+def DFS(graph, start, direction):
+    global t
+    graph[start][2] = True
+    for i in graph[start][direction]:
+        if graph[i][2] == False:
+            DFS(graph, i, direction)
+    t += 1
+    graph[start][3] = t
+    return
+
+
+
     
 def main():
     graph = loadGraph()
+    DFSLoop(graph)
     printGraph(graph)
     return
     
