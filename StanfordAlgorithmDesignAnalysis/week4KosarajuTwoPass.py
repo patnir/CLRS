@@ -48,16 +48,16 @@ def DFSLoop(graph):
         print check
         if graph[check][1] == False:
             s = check
-            DFS2(graph, check)
+            DFS2(graph, check, lGraph)
     return
 
-def DFS2(graph, start):    
-    global s
+def DFS2(graph, start, lGraph):    
     graph[start][1] = True
     graph[start][3] = s
     for i in graph[start][0]:
-        if graph[i][1] == False:
-            DFS2(graph, i)
+        check = lGraph[i]
+        if graph[check][1] == False:
+            DFS2(graph, check, lGraph)
     return
 
 def DFS(graph, start):
