@@ -52,13 +52,12 @@ def DFS2(graph, start):
     graph[start][1] = True
     graph[start][3] = s
     for i in graph[start][0]:
-        graph[i][3] = start
         if graph[i][1] == False:
             DFS2(graph, i)
     return
 
 def DFS(graph, start):
-    global s, t
+    global t
     graph[start][1] = True
     for i in graph[start][0]:
         if graph[i][1] == False:
@@ -80,17 +79,15 @@ def leaderGraph(graph):
     g = dict()
     for i in graph.keys():
         tail = graph[i][2]
-        head = i
-        g[tail] = head
+        
     return g
     
 def main():
     graph = loadGraph()
-    printGraph(graph)
     DFSLoop(graph)
     printGraph(graph)
-    lGraph = leaderGraph(graph)
-    printGraph(lGraph)
+#    lGraph = leaderGraph(graph)
+#    printGraph(lGraph)
     
     
 if __name__ == "__main__":
