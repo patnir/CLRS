@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Aug 08 16:53:03 2016
+Created on Mon Aug 08 17:54:38 2016
 
 @author: Rahul Patni
 """
 
-# two pass attmept 2
+# Kosaraju Two Pass with Stack 
 
 def loadGraph():
     graph = dict()
@@ -19,7 +19,7 @@ def loadGraph():
             i[x] = i[x].rstrip()
             if i[x] != "\n":
                 if int(i[x]) not in graph:
-                    graph[int(i[x])] = [[], [], False, None, None]
+                    graph[int(i[x])] = [[], [], False, "Time", None]
                 graph[int(i[0])][0].append(int(i[x]))
                 graph[int(i[x])][1].append(int(i[0]))
     return graph
@@ -46,11 +46,11 @@ def DFSLoop(graph):
     for i in range(len(graph), 0, -1):
         if graph[i][2] == False:
             DFS(graph, i, 0)
-    resetSearch(graph)
-    for i in range(len(graph), 0, -1):
-        if graph[i][2] == False:
-            s = graph[i][3]
-            DFS2(graph, i, 1)            
+#    resetSearch(graph)
+#    for i in range(len(graph), 0, -1):
+#        if graph[i][2] == False:
+#            s = graph[i][3]
+#            DFS2(graph, i, 1)            
 
 def DFS2(graph, start, direction):
     global s
@@ -71,12 +71,36 @@ def DFS(graph, start, direction):
     graph[start][3] = t
     return
 
+z = 0
 
+def Quest(graph, start, direction):
+    global z
+    stack = []
+    stack.append(start)
+    graph[start][2] = True
+    while len(stack) != 0:
+        node = stack.pop()
+        for i in graph[node][direction]:
+            if graph[i][2] == False:
+                graph[i][2] = True   
+                stack.append(i)
+    return
 
-    
+def DFSStack(graph):
+    global z
+    z = 1
+    for i in range(len(graph), 0, -1):
+        if graph[i][2] == False:           
+            Quest(graph, i, 1)
+    return
+
 def main():
     graph = loadGraph()
     DFSLoop(graph)
+    printGraph(graph)
+    print "yolo"
+    graph = loadGraph()
+    DFSStack(graph)
     printGraph(graph)
     return
     
