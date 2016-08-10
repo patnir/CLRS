@@ -6,6 +6,8 @@ Created on Wed Aug 10 13:56:21 2016
 """
 
 # Djistra's shortest path algorithm
+import sys
+
 
 def loadGraph():
     graph = dict()
@@ -32,25 +34,23 @@ def dijkstra(graph, start):
     B = dict()
     B[start] = []
     while len(X) != len(graph):
-        routes = []
-        length = []
-        source = []
+        minimumLength = sys.maxint
+        minimumSource = None
+        minimumRoute = None
         for i in X:
-            
             for j in graph[i]:
                 if j[0] not in X:
                     if j[0] not in B:
                         B[j[0]] = []
-                    source.append(i)
-                    routes.append(j[0])
-                    lvw = j[1]
-                    length.append(A[i] + lvw)
-        shortest = length.index(min(length))
-        X.append(routes[shortest])
-        A[routes[shortest]] = min(length)
-        new_list = list(B[source[shortest]])
-        B[routes[shortest]] = new_list
-        B[routes[shortest]].append(routes[shortest])
+                    if j[1] < minimumLength:
+                        minimumLength = A[i] + j[1]
+                        minimumSource = i
+                        minimumRoute = j[0]
+        X.append(minimumRoute)
+        A[minimumRoute] = minimumLength
+        new_list = list(B[minimumSource])
+        B[minimumRoute] = new_list
+        B[minimumRoute].append(minimumRoute)
     print "X"
     print X
     print "A"
