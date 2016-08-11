@@ -4,6 +4,7 @@ Created on Thu Aug 11 06:04:03 2016
 
 @author: Rahul Patni
 """
+import random
 
 # Unbalanced Binary Search Tree
 
@@ -43,8 +44,10 @@ class Node():
     def postOrder(self):
         if self == None:
             return
-        self.left.postOrder()
-        self.right.postOrder()
+        if self.left != None:
+            self.left.postOrder()
+        if self.right != None:
+            self.right.postOrder()
         print self.value,
         return 
         
@@ -52,16 +55,20 @@ class Node():
         if self == None:
             return
         print self.value,
-        self.left.preOrder()
-        self.right.preOrder()
+        if self.left != None:
+            self.left.preOrder()
+        if self.right != None:
+            self.right.preOrder()
         return
         
     def inOrder(self):
         if self == None:
             return
-        self.left.inOrder()
+        if self.left != None:
+            self.left.inOrder()
         print self.value, 
-        self.right.inOrder()
+        if self.right != None:        
+            self.right.inOrder()
         return
 
 class BST():
@@ -86,6 +93,7 @@ class BST():
             return None
         else:
             self.root.postOrder()
+            print "\n"
         return
         
     def preOrder(self):
@@ -93,6 +101,7 @@ class BST():
             return None
         else:
             self.root.preOrder()
+            print "\n"
         return
         
     def inOrder(self):
@@ -100,10 +109,20 @@ class BST():
             return None
         else:
             self.root.inOrder()
+            print "\n"
         return
         
-        
-        
-        
-
-        
+def main():
+    array = []
+    for i in range(0, 10):
+        array.append(random.randint(0, 100))
+    print array
+    tree = BST()
+    for i in array:
+        tree.insert(i)
+    tree.inOrder()
+    tree.preOrder()
+    tree.postOrder()
+    
+if __name__ == "__main__":
+    main()
