@@ -1,5 +1,3 @@
-s v 1
-s w 4
-v w 2
-v t 6
-w t 3
+s	v,1	w,4
+v	w,2	t,6
+w	t,3
