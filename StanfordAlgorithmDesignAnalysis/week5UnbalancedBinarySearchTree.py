@@ -41,12 +41,27 @@ class Node():
         return
         
     def postOrder(self):
+        if self == None:
+            return
+        self.left.postOrder()
+        self.right.postOrder()
+        print self.value,
         return 
         
     def preOrder(self):
+        if self == None:
+            return
+        print self.value,
+        self.left.preOrder()
+        self.right.preOrder()
         return
         
     def inOrder(self):
+        if self == None:
+            return
+        self.left.inOrder()
+        print self.value, 
+        self.right.inOrder()
         return
 
 class BST():
@@ -70,14 +85,25 @@ class BST():
         if self.root == None:
             return None
         else:
-            print self.root.postOrder()
+            self.root.postOrder()
         return
         
     def preOrder(self):
+        if self.root == None:
+            return None
+        else:
+            self.root.preOrder()
         return
         
     def inOrder(self):
+        if self.root == None:
+            return None
+        else:
+            self.root.inOrder()
         return
+        
+        
+        
         
 
         
