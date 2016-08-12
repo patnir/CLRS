@@ -71,27 +71,28 @@ def DFS(graph, start, direction):
     graph[start][3] = t
     return
 
-z = 0
-
-def Quest(graph, start, direction):
-    global z
-    stack = []
-    stack.append(start)
-    graph[start][2] = True
-    while len(stack) != 0:
-        node = stack.pop()
-        for i in graph[node][direction]:
-            if graph[i][2] == False:
-                graph[i][2] = True   
-                stack.append(i)
-    return
 
 def DFSStack(graph):
-    global z
-    z = 1
+    z = 0
     for i in range(len(graph), 0, -1):
         if graph[i][2] == False:           
-            Quest(graph, i, 1)
+            stack = []
+            trace = []
+            stack.append(i)
+            graph[i][2] = True
+            while len(stack) != 0:
+                node = stack.pop()
+                trace.append(node)
+                for k in graph[node][0]:
+                    if graph[k][2] == False:
+                        graph[k][2] = True
+                        print k
+                        stack.append(k)
+            print trace
+            while len(trace) != 0:
+                node = trace.pop()
+                z += 1
+                graph[node][3] = z
     return
 
 def main():
