@@ -57,9 +57,11 @@ def DFSStack(graph):
 
 
 def DFSSetLeaderStack(graph):
+    total = []
     for i in range(len(graph), 0, -1):
         if graph[i][2] == False:
             s = graph[i][3]
+            count = 1
             stack = []
             stack.append(i)
             graph[i][2] = True
@@ -70,7 +72,10 @@ def DFSSetLeaderStack(graph):
                     if graph[k][2] == False:
                         graph[k][2] = True
                         graph[k][4] = s
-                        stack.append(k)    
+                        stack.append(k)   
+                        count += 1
+            total.append(count)
+    print total
     return
 
 def main():
