@@ -34,44 +34,6 @@ def printGraph(graph):
         print i, graph[i]
     return 
 
-t = 0
-
-s = None
-
-def DFSLoop(graph):
-    global t
-    t = 0
-    global s
-    s = None
-    for i in range(len(graph), 0, -1):
-        if graph[i][2] == False:
-            DFS(graph, i, 0)
-#    resetSearch(graph)
-#    for i in range(len(graph), 0, -1):
-#        if graph[i][2] == False:
-#            s = graph[i][3]
-#            DFS2(graph, i, 1)            
-
-def DFS2(graph, start, direction):
-    global s
-    graph[start][4] = s
-    graph[start][2] = True
-    for i in graph[start][direction]:
-        if graph[i][2] == False:
-            DFS2(graph, i, direction)
-    return
-
-def DFS(graph, start, direction):
-    global t
-    graph[start][2] = True
-    for i in graph[start][direction]:
-        if graph[i][2] == False:
-            DFS(graph, i, direction)
-    t += 1
-    graph[start][3] = t
-    return
-
-
 def DFSStack(graph):
     z = 0
     for i in range(len(graph), 0, -1):
@@ -86,22 +48,36 @@ def DFSStack(graph):
                 for k in graph[node][0]:
                     if graph[k][2] == False:
                         graph[k][2] = True
-                        print k
                         stack.append(k)
-            print trace
             while len(trace) != 0:
                 node = trace.pop()
                 z += 1
                 graph[node][3] = z
     return
 
+
+def DFSSetLeaderStack(graph):
+    for i in range(len(graph), 0, -1):
+        if graph[i][2] == False:
+            s = graph[i][3]
+            stack = []
+            stack.append(i)
+            graph[i][2] = True
+            while len(stack) != 0:
+                node = stack.pop()
+                graph[node][4] = s
+                for k in graph[node][1]:
+                    if graph[k][2] == False:
+                        graph[k][2] = True
+                        graph[k][4] = s
+                        stack.append(k)    
+    return
+
 def main():
     graph = loadGraph()
-    DFSLoop(graph)
-    printGraph(graph)
-    print "yolo"
-    graph = loadGraph()
     DFSStack(graph)
+    resetSearch(graph)
+    DFSSetLeaderStack(graph)
     printGraph(graph)
     return
     
