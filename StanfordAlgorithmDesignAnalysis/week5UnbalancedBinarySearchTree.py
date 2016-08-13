@@ -159,6 +159,8 @@ class BST():
         prev = None
         curr = self.root
         while curr != None:
+            print "val", val
+            print "current val", curr.value
             if val == curr.value:
                 break
             prev = curr
@@ -167,20 +169,29 @@ class BST():
             else:
                 curr = curr.left
         if curr == None:
+            print "not found"
             return False
         if curr.left == None and curr.right == None:
-            prev = None
+            print "both are none"
+            if prev.right != None and prev.right.value == val:
+                prev.right = None
+            else:
+                prev.left = None
+            curr = None
         elif curr.left == None:
+            print "left is none"
             if curr.value < prev.value:
                 prev.left = curr.right
             else:
                 prev.right = curr.right
         elif curr.right == None:
+            print "right is none"
             if curr.value < prev.value:
                 prev.left = curr.left
             else:
                 prev.right = curr.left
         else:
+            print "both are present"
             pred = curr.left
             while pred.right != None:
                 pred = pred.right
@@ -190,7 +201,7 @@ class BST():
         
 def main():
     array = []
-    for i in range(0, 2):
+    for i in range(0, 10):
         number = random.randint(0, 100)
         array.append(number)
         if i == 9:
@@ -204,7 +215,8 @@ def main():
     #key = tree.maxElement()
     key = tree.minElement()
     print key
-    print "key", tree.delete(key), key
+    print "delete key", key
+    print "deleting", tree.delete(key)
     tree.inOrder()
 
 if __name__ == "__main__":

@@ -9,10 +9,11 @@ Created on Mon Aug 08 17:54:38 2016
 
 def loadGraph():
     graph = dict()
-    filename = "Graph4StrongComponent.txt"
+    filename = "SCC.txt"
     fptr = open(filename)
     for line in fptr:
-        i = line.split("\t")
+        line = line.rstrip()
+        i = line.split(" ")
         if int(i[0]) not in graph:
             graph[int(i[0])] = [[], [], False, "Time", "Leader"]
         for x in range(1, len(i)):
@@ -76,6 +77,8 @@ def DFSSetLeaderStack(graph):
                         count += 1
             total.append(count)
     print total
+    y = sorted(range(len(total)), key=lambda x: total[x])[-5:]
+    print y
     return
 
 def main():
@@ -83,7 +86,6 @@ def main():
     DFSStack(graph)
     resetSearch(graph)
     DFSSetLeaderStack(graph)
-    printGraph(graph)
     return
     
 if __name__ == "__main__":
