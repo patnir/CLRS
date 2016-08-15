@@ -13,6 +13,7 @@ class Node():
         self.value = val
         self.left = None
         self.right = None
+        self.parent = None
         
     def insert(self, val):
         if val <= self.value:
@@ -20,11 +21,13 @@ class Node():
                 self.left = Node(val)
             else:
                 self.left.insert(val)
+            self.left.parent = self
         else:
             if self.right == None:
                 self.right = Node(val)
             else:
                 self.right.insert(val)
+            self.right.parent = self
         
     def search(self, val):
         if val == self.value:
@@ -84,8 +87,8 @@ class Node():
             return self.right.goRight()
 
            
-    def pred(self, key, val):
-        return key
+    def pred(self, val):
+        return
     
     def succ(self):
         return
@@ -144,9 +147,7 @@ class BST():
             return self.root.goRight()
             
     def pred(self, val):
-        if self.root == None:
-            return None
-        return self.root.pred(None, val)
+        return
             
     def succ(self, val):
         if self.root == None:
@@ -195,8 +196,8 @@ class BST():
             while pred.right != None:
                 follow = pred
                 pred = follow.right
-            print "curr", curr.value
-            print "pred", pred.value
+            #print "curr", curr.value
+            #print "pred", pred.value
             print pred.right, follow.right.value
             print pred.left
             curr.value = pred.value
@@ -225,7 +226,7 @@ def main():
         tree.insert(i)
     tree.preOrder()
     tree.inOrder()
-    #key = tree.maxElement()
+    key = tree.maxElement()
     #key = tree.minElement()
     print "delete key", key
     print "deleting", tree.delete(key)
