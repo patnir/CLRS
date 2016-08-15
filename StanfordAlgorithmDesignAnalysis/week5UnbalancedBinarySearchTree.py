@@ -147,7 +147,34 @@ class BST():
             return self.root.goRight()
             
     def pred(self, val):
-        return
+        if self.root == None:
+            return
+        curr = self.root
+        while curr != None:
+            if val == curr.value:
+                break
+            if val > curr.value:
+                curr = curr.right
+            else:
+                curr = curr.left
+        if curr == None:
+            return None
+        if curr.left != None:
+            curr = curr.left
+            print "has a left branc"
+            while curr.right != None:            
+                curr = curr.right
+            return curr.value
+        else:
+            print "does not have a left branch"
+            curr = curr.parent
+            while curr != None and curr.value > val:
+                curr = curr.parent
+            if curr == None:
+                print "not found"
+                return None
+            return curr.value
+        return "oops"
             
     def succ(self, val):
         if self.root == None:
@@ -226,10 +253,10 @@ def main():
         tree.insert(i)
     tree.preOrder()
     tree.inOrder()
-    key = tree.maxElement()
-    #key = tree.minElement()
-    print "delete key", key
-    print "deleting", tree.delete(key)
+    #key = tree.maxElement()
+    key = tree.root.value
+    print key
+    print tree.pred(key)
     tree.inOrder()
 
 if __name__ == "__main__":
