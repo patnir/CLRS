@@ -15,7 +15,8 @@ def loadData():
     A = []
     #i = 0
     for line in fptr:
-        A.append(long(line.rstrip()))
+        number = long(line.rstrip())
+        A.append(number)
     return A
     
 def ChoosePivot(A, left, right):
@@ -45,11 +46,26 @@ def Swap(A, i, j):
     A[j] = temp
     return
 
+def TwoSum(A):
+    total = 0
+    for i in range(len(A) - 1):
+        start = i
+        t = abs(A[start] - A[start + 1])
+        while t <= 10000:
+            total += 1
+            start += 1
+            if start == len(A) - 1:
+                break
+            t = abs(A[start] - A[start + 1])
+    return total
+
 def main():
     A = loadData()
     print "load complete"
     QuickSort(A, 0, len(A) - 1)
     print "sort complete"
+    print TwoSum(A)
+    
     
 if __name__ == "__main__":
     main()
