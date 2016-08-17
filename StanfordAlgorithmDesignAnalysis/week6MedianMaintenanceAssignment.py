@@ -136,28 +136,23 @@ def medianMaintenance():
         if high != None:
             highNumbers.insert(high)
         median = 0
-        if i != 0 and i % 2 == 0:
+        i += 1
+        if i % 2 == 0:
             if highNumbers.size < lowNumbers.size:
                 highNumbers.insert(lowNumbers.extractMax())
             elif highNumbers.size > lowNumbers.size:
                 lowNumbers.insert(highNumbers.extractMin())
-            median = highNumbers.extractMin()
-            print median
-            highNumbers.insert(median)
+            median = lowNumbers.extractMax()
+            lowNumbers.insert(median)
         else:
             if lowNumbers.size > highNumbers.size:
                 median = lowNumbers.extractMax()
-                print median
                 lowNumbers.insert(median)
             else:
                 median = highNumbers.extractMin()
-                print median
                 highNumbers.insert(median)
+        print median
         total += median
-        i += 1
-    print "outside", i
-    print "low size", lowNumbers.size
-    print "high size", highNumbers.size
     print total
 
 class DynamicSortedArray():
@@ -193,11 +188,14 @@ def medianMaintDynamicSortedArray():
             median = data[index - 1]
         print median
         total += median
-    print "total", total % 10000
+    print "total", total
     return
 
 def main():
-    medianMaintDynamicSortedArray()
+    #medianMaintDynamicSortedArray()
+    #46831213
+    medianMaintenance()
+    #46831213
     return
     
 if __name__ == "__main__":
