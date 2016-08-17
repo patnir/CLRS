@@ -38,6 +38,8 @@ class HeapLow():
             print i
         
     def extractMin(self):
+        if self.size == 0:
+            return None
         self.size -= 1
         toReturn = self.data[0]
         self.data[0] = self.data[self.size]
@@ -89,6 +91,8 @@ class HeapHigh():
             print i
         
     def extractMax(self):
+        if self.size == 0:
+            return None
         self.size -= 1
         toReturn = self.data[0]
         self.data[0] = self.data[self.size]
@@ -113,11 +117,48 @@ class HeapHigh():
 def medianMaintenance():
     filename = "Median.txt"
     fptr = open(filename)
-    low = HeapLow()
-    high = HeapHigh()
+    lowNumbers = HeapHigh()
+    highNumbers = HeapLow()
+    i = 0
+    total = 0
     for line in fptr:
-        print int(line.rstrip())
-            
+        number = int(line.rstrip())
+        low = lowNumbers.extractMax()
+        high = highNumbers.extractMin()
+        if lowNumbers.size == 0 or number <= low:
+            lowNumbers.insert(number)
+        elif highNumbers.size == 0 or number >= high:
+            highNumbers.insert(number)
+        else:
+            lowNumbers.insert(number)
+        if low != None:
+            lowNumbers.insert(low)
+        if high != None:
+            highNumbers.insert(high)
+        median = 0
+        if i != 0 and i % 2 == 0:
+            if highNumbers.size < lowNumbers.size:
+                highNumbers.insert(lowNumbers.extractMax())
+            elif highNumbers.size > lowNumbers.size:
+                lowNumbers.insert(highNumbers.extractMin())
+            median = highNumbers.extractMin()
+            print median
+            highNumbers.insert(median)
+        else:
+            if lowNumbers.size > highNumbers.size:
+                median = lowNumbers.extractMax()
+                print median
+                lowNumbers.insert(median)
+            else:
+                median = highNumbers.extractMin()
+                print median
+                highNumbers.insert(median)
+        total += median
+        i += 1
+    print "outside", i
+    print "low size", lowNumbers.size
+    print "high size", highNumbers.size
+    print total
 
 def main():
     medianMaintenance()
