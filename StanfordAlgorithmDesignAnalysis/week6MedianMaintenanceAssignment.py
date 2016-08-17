@@ -20,10 +20,8 @@ class HeapLow():
         # case if not added to correct position
         check = self.size
         while check > 1:
-            print "loop though"
             check2 = int(check / 2.0)
             if self.data[check - 1] < self.data[check2 - 1]:
-                print "print called"
                 self.swap(check - 1, check2 - 1)
             check = check2
         return
@@ -110,27 +108,24 @@ class HeapHigh():
             right = left + 1
         return toReturn
         
-        
+def medianMaintenance():
+    filename = "Median.txt"
+    fptr = open(filename)
+    low = HeapLow()
+    high = HeapHigh()
+    for line in fptr:
+        number = int(line.rstrip())
+        low.insert(number)
+        high.insert(number)
+        lowest = low.extractMin()
+        print "lowest", lowest
+        highest = high.extractMax()
+        print "highest", highest
+        low.insert(lowest)
+        high.insert(highest)
+
 def main():
-    heap = HeapHigh()
-    array = [13, 11, 9, 12, 4, 9, 8, 4, 4, 9, 15, 1, -7, -9, -123, 10]
-    for i in array:
-        heap.insert(i)
-        print "printing heap for", i
-        heap.printData()
-    print "extracting"
-    while heap.size > 0:
-        print heap.extractMax()
-        
-#    heap = HeapLow()
-#    array = [13, 11, 9, 12, 4, 9, 8, 4, 4, 9, 15, 1, -7, -9, -123, 10]
-#    for i in array:
-#        heap.insert(i)
-#        print "printing heap for", i
-#        heap.printData()
-#    print "extracting"
-#    while heap.size > 0:
-#        print heap.extractMin()
+    medianMaintenance()
     return
     
 if __name__ == "__main__":
