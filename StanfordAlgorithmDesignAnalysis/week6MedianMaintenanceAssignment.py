@@ -7,6 +7,8 @@ Created on Tue Aug 16 20:12:27 2016
 
 # Week 6 Median Maintenance
 
+import sys
+
 class HeapLow():
     def __init__(self):
         self.size = 0
@@ -114,15 +116,8 @@ def medianMaintenance():
     low = HeapLow()
     high = HeapHigh()
     for line in fptr:
-        number = int(line.rstrip())
-        low.insert(number)
-        high.insert(number)
-        lowest = low.extractMin()
-        print "lowest", lowest
-        highest = high.extractMax()
-        print "highest", highest
-        low.insert(lowest)
-        high.insert(highest)
+        print int(line.rstrip())
+            
 
 def main():
     medianMaintenance()
