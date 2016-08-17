@@ -50,13 +50,17 @@ def TwoSum(A):
     total = 0
     for i in range(len(A) - 1):
         start = i
-        t = abs(A[start] - A[start + 1])
+        end = start + 1
+        diff = []
+        t = abs(A[start] - A[end])
         while t <= 10000:
-            total += 1
-            start += 1
-            if start == len(A) - 1:
+            if t not in diff:
+                diff.append(t)
+            end += 1
+            if end == len(A):
                 break
-            t = abs(A[start] - A[start + 1])
+            t = abs(A[start] - A[end])
+        total += len(diff)
     return total
 
 def main():
