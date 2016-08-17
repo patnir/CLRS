@@ -160,8 +160,44 @@ def medianMaintenance():
     print "high size", highNumbers.size
     print total
 
+class DynamicSortedArray():
+    def __init__(self):
+        self.size = 0
+        self.data = []
+    
+    def insert(self, number):
+        if self.size == 0:
+            self.size += 1
+            self.data.append(number)
+            return
+        middle = int(self.size / 2)
+        while True:
+            if self.data[middle] > number:
+                middle += self.size + int((self.size - middle) / 2)
+            return
+        return
+
+def medianMaintDynamicSortedArray():
+    filename = "Median.txt"
+    data = []
+    fptr = open(filename)
+    total = 0
+    for line in fptr:
+        data.append(int(line.rstrip()))
+        data.sort()
+        if len(data) % 2 == 0:
+            index = len(data) / 2
+            median = data[index - 1]
+        else:
+            index = (len(data) + 1) / 2
+            median = data[index - 1]
+        print median
+        total += median
+    print "total", total % 10000
+    return
+
 def main():
-    medianMaintenance()
+    medianMaintDynamicSortedArray()
     return
     
 if __name__ == "__main__":
