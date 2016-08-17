@@ -155,22 +155,6 @@ def medianMaintenance():
         total += median
     print total
 
-class DynamicSortedArray():
-    def __init__(self):
-        self.size = 0
-        self.data = []
-    
-    def insert(self, number):
-        if self.size == 0:
-            self.size += 1
-            self.data.append(number)
-            return
-        middle = int(self.size / 2)
-        while True:
-            if self.data[middle] > number:
-                middle += self.size + int((self.size - middle) / 2)
-            return
-        return
 
 def medianMaintDynamicSortedArray():
     filename = "Median.txt"
