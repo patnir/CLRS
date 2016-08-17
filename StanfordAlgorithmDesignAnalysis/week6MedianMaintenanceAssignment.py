@@ -101,9 +101,9 @@ class HeapHigh():
             if right > self.size:
                 right = left
             toSwap = right
-            if self.data[left - 1] <= self.data[right - 1]:
+            if self.data[left - 1] > self.data[right - 1]:
                 toSwap = left
-            if self.data[parent - 1] <= self.data[toSwap - 1]:
+            if self.data[parent - 1] < self.data[toSwap - 1]:
                 self.swap(parent - 1, toSwap - 1)
             parent = toSwap
             left = toSwap * 2
