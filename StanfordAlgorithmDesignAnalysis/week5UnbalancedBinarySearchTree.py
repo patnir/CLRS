@@ -223,8 +223,6 @@ class BST():
             while pred.right != None:
                 follow = pred
                 pred = follow.right
-            #print "curr", curr.value
-            #print "pred", pred.value
             print pred.right, follow.right.value
             print pred.left
             curr.value = pred.value
