@@ -24,10 +24,8 @@ def circularArraySearch(A, target):
             else:
                 end = mid - 1
         elif (firstHalf and (A[mid] >= target or A[mid] <= high)) or ((firstHalf == False) and A[mid] >= target):
-            print "here 1"
             end = mid - 1
         else:
-            print "here 2"
             start = mid + 1
     return False
     
