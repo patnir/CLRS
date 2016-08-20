@@ -13,6 +13,20 @@ class Node():
     def __init__(self, val):
         self.value = val
         self.next = None
+        
+    def printReverse(self):
+        if self.next == None:
+            print self.value, 
+            return
+        self.next.printReverse()
+        print self.value, 
+        
+    def printForward(self):
+        if self.next == None:
+            print self.value, 
+            return
+        print self.value, 
+        self.next.printForward()
 
 class LinkedList():
     def __init__(self):
@@ -37,30 +51,26 @@ class LinkedList():
         toReturn.next = None
         self.size -= 1
         return toReturn
-    
-def printForward(node):
-    if node == None:
+        
+    def printReverse(self):
+        if self.head == None:
+            return
+        self.head.printReverse()
         return
-    print node.value, 
-    printForward(node.next)
-    return
-    
-def printReverse(node):
-    if node == None:
+        
+    def printForward(self):
+        if self.head == None:
+            return
+        self.head.printForward()
         return
-    printReverse(node.next)
-    print node.value,
-    return
 
 def main():
     l = LinkedList()
-    for i in range(10):
-        val = random.randint(0, 50)
+    for i in range(5):
+        val = random.randint(10, 50)
         print val
         l.push(val)
-    printForward(l.head)
-    print
-    printReverse(l.head)
+    l.printForward()
     return
     
     
