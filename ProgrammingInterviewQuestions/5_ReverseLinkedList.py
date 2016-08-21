@@ -37,6 +37,9 @@ class LinkedList():
         toReturn.next = None
         self.size -= 1
         return toReturn
+        
+    def reverse(self):
+        return
     
 def main():
     l = LinkedList()
@@ -44,10 +47,7 @@ def main():
         val = random.randint(0, 50)
         print val
         l.push(val)
-    print "popping"
-    while l.size != 0:
-        ret = l.pop()
-        print ret.value
+    l.reverse()
     return
     
 main()
