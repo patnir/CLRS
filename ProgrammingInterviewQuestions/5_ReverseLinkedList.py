@@ -52,6 +52,8 @@ class LinkedList():
         return
         
     def reverse(self):
+        if self.head == None:
+            return
         curr = self.head.next
         prev = self.head
         temp = None
@@ -67,7 +69,7 @@ class LinkedList():
     
 def main():
     l = LinkedList()
-    for i in range(10):
+    for i in range(0):
         val = random.randint(10, 50)
         l.push(val)
     l.printForward()
