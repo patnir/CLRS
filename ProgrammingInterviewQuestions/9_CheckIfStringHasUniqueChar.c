@@ -27,15 +27,15 @@ void swap(char *word, int a, int b)
 
 void merge(char *word, int s, int m, int e) 
 {
-	if (s - e == 1) {
+	if (e - s == 1) {
 		if (word[s] > word[e]) {
 			swap(word, s, e);
 		}
 		return;
 	}
 
-	int length1 = m - s;
-	int length2 = e - m - 1;
+	int length1 = m - s + 1;
+	int length2 = e - m;
 	char *array1 = (char *)malloc(sizeof(char) * length1);
 	char *array2 = (char *)malloc(sizeof(char) * length2);
 
@@ -44,7 +44,7 @@ void merge(char *word, int s, int m, int e)
 
 	int i;
 
-	for (i = 0; i <= e - s; i ++) {
+	for (i = s; i <= e; i ++) {
 		if (i <= m) {
 			array1[k++] = word[i];
 		}
@@ -56,7 +56,7 @@ void merge(char *word, int s, int m, int e)
 	k = 0; 
 	j = 0;
 
-	for (i = 0; i <= (e - s); i++) {
+	for (i = s; i <= e; i++) {
 		if ((k < length1 && array1[k] < array2[j]) || j >= length2) {
 			word[i] = array1[k++];
 		} 
