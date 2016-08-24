@@ -85,6 +85,19 @@ void mergeSort(char *word, int start, int end)
 	return;
 }
 
+int sortedIsUnique(char *word, int length) 
+{
+	int i;
+	for (i = 0; i < length - 1; i++) {
+		if (word[i] == word[i + 1]) {
+			printf("Not unique!\n");
+			return 0;
+		}
+	}
+	printf("Unique!\n");
+	return 1;
+}
+
 int main(int argc, char **argv) 
 {
 	if (argc == 1) {
@@ -100,5 +113,7 @@ int main(int argc, char **argv)
 
 	//swap(argv[1], 0, 1);
 	printf("%s\n", argv[1]);
+
+	printf("%d\n", sortedIsUnique(argv[1], length));
 	return EXIT_SUCCESS;
 }
