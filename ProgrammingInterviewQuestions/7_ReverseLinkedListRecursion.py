@@ -50,23 +50,23 @@ class LinkedList():
         toReturn.next = None
         self.size -= 1
         return toReturn
-        
-    def reverse(self):
+
+    def printForward(self):
         if self.head == None:
             return
-        self.head = self.head.revers()
-#        curr = self.head.next
-#        prev = self.head
-#        temp = None
-#        while curr != None:
-#            temp = curr.next
-#            curr.next = prev
-#            if prev == self.head:
-#                prev.next = None
-#            prev = curr
-#            curr = temp
-#        self.head = prev
-        return
+        self.head.printForward()
+        return        
+        
+def reverse(head):
+    if head.next == None:
+        return head
+    new_head = reverse(head.next)
+    ret = new_head
+    while ret.next != None:
+        ret = ret.next
+        print ret.value
+    ret.next = head
+    return new_head
         
 def main():
     l = LinkedList()
@@ -74,7 +74,7 @@ def main():
         val = random.randint(10, 50)
         l.push(val)
     l.printForward()
-    l.reverse()
+    l.head = reverse(l.head)
     print
     l.printForward()
     return
