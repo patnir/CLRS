@@ -98,6 +98,23 @@ int sortedIsUnique(char *word, int length)
 	return 1;
 }
 
+int charSetIsUniquie(char *word, int length) {
+	int char_set[256];
+	int i;
+	for (i = 0; i < length; i++) {
+		int val = (int) word[i];
+		if (char_set[val] == 1) {
+			printf("Not unique cs!\n");
+			return 0;
+		}
+		else {
+			char_set[val] = 1;
+		}
+	}
+	printf("Unique! cs\n");
+	return 1;
+}
+
 int main(int argc, char **argv) 
 {
 	if (argc == 1) {
@@ -108,6 +125,8 @@ int main(int argc, char **argv)
 	int length = strlen(argv[1]);
 	int total = isUnique(argv[1], length);
 	printf("Result = %d\n", total);
+
+	printf("Result2 = %d\n", charSetIsUniquie(argv[1], length));
 
 	mergeSort(argv[1], 0, length - 1);
 
