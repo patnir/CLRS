@@ -42,6 +42,8 @@ class Stack:
     def pop(self):
         if self.size == 0:
             return None
+        self.size -= 1
+
         ret_node = self.head
         self.head = self.head.next
         ret_node.next = None
@@ -49,19 +51,24 @@ class Stack:
         
 
 
-def checkBalanced(expression):
-    return
+def isBalanced(expression):
+    array = list(expression)
+    opening = ['{', '(', '[']
+    closing = ['}', ')', ']']
+    s = Stack()
+    for i in array:
+        if i in opening:
+            s.push(i)
+        elif i in closing:
+            ret = s.pop()
+            if ret == None or opening.index(ret.value) != closing.index(i):
+                return False
+    if s.size == 0:
+        return True
+    return False
     
 def main():
-    s = Stack()
-    for i in range(0, 10):
-        s.push(random.randint(0, 100))
-    s.printStack()
-    print
-    print "pop"
-    for i in range(0, s.size):
-        ret = s.pop()
-        print ret.value
+    print isBalanced("[(])")
     return
     
 main()
