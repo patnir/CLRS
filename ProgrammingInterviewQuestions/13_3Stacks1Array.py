@@ -15,7 +15,7 @@ class ThreeStack():
         self.size = 12
         self.length = (self.size - 6) / 3
         for i in range(6, self.size):
-            self.data[i] = -1
+            self.data[i] = 0
         self.data[0] = (self.size - 6) / 3 + 6 - self.length
         self.data[1] = self.data[0]
         self.data[2] = (self.size - 6) * 2 / 3 + 6 - self.length
@@ -33,22 +33,39 @@ class ThreeStack():
         if stack > 3 or stack < 1:
             print "error"
             return
-        length = (self.size - 6) / 3
         head = stack * 2 - 2
         tail = head + 1
-        if self.data[head] - self.data[tail] < length:
-            self.data[self.data[head]] = value
-            self.data[head] += 1
-        else:
-            print "overload"
-                
+        if self.data[head] - self.data[tail] >= self.length:
+            nSize = (self.size - 6) * 3 + 6
+            nLength = self.length * 3
+            nArray = array.array('i', range(nSize))
+            for i in range(nSize):
+                nArray[i] = 0
+            for i in range(3):
+                nArray[i * 2 + 1] = ((self.data[i * 2 + 1] - 6) / self.length) * nLength + (self.data[i * 2 + 1]) % self.length + 6
+                nArray[i * 2] = nArray[i * 2 + 1] + self.data[i * 2] - self.data[i * 2 + 1]
+            for i in range(6, self.size):
+                check = ((i  - 6) / self.length) * nLength + (i - 6) % self.length + 6
+                nArray[check] = self.data[i]
+            self.data = nArray
+            self.size = nSize
+            self.length = nLength
+        self.data[self.data[head]] = value
+        self.data[head] += 1
+            
+    def push(self, value, stack):
+        
+        return
+        
+    def pop(self, stack):
+        return
 
 def main():
     s = ThreeStack()
     s.printStack()
     for i in range(20):
         print
-        a = random.randint(0, 20)
+        a = random.randint(10, 100)
         print a, 
         stack = random.randint(1, 3)
         print stack
