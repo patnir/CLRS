@@ -29,7 +29,7 @@ class ThreeStack():
         print
         return
 
-    def insert(self, value, stack):
+    def push(self, value, stack):
         if stack > 3 or stack < 1:
             print "error"
             return
@@ -52,25 +52,33 @@ class ThreeStack():
             self.length = nLength
         self.data[self.data[head]] = value
         self.data[head] += 1
-            
-    def push(self, value, stack):
-        
-        return
         
     def pop(self, stack):
-        return
+        head = stack * 2 - 2
+        tail = head + 1
+        if self.data[head] == self.data[tail]:
+            print "stack is empty"
+            return None
+        ret = self.data[self.data[head] - 1]
+        self.data[self.data[head] - 1] = 0
+        self.data[head] -= 1
+        return ret
 
 def main():
     s = ThreeStack()
     s.printStack()
-    for i in range(20):
+    for i in range(5):
         print
         a = random.randint(10, 100)
         print a, 
         stack = random.randint(1, 3)
         print stack
-        s.insert(a, stack)
+        s.push(a, stack)
+    print "popping"
+    for i in range(10):
         s.printStack()
-    
+        a= random.randint(1, 3)
+        print a
+        print s.pop(a)
     
 main()
