@@ -30,13 +30,35 @@ def checkAnagram(T, occ, uniq):
     s = sum(occ)
     if s != 0: 
         return False
-    return True
-        
+    return True     
+      
+def swap(n, start, end):
+    temp = n[start]
+    n[start] = n[end]
+    n[end] = temp
+    return       
+
+def anagram(word, start, end):
+    if end - start < 2:    
+        print word
+        swap(word, start, end)
+        print word
+        swap(word, start, end)
+        return
+    for i in range(start, end + 1):
+        swap(word, start, i)
+        anagram(word, start + 1, end)
+        swap(word, start, i)
+    return
+    
     
 def main():
-    word = "asdfa"
-    a , b = comp(word)
-    print checkAnagram("aasdf", a, b)
+    word = "dog"
+    word = list(word)
+    print word
+    print "calling function"
+    anagram(word, 0, len(word) - 1)
+    
     
     
 main()
