@@ -38,26 +38,28 @@ def swap(n, start, end):
     n[end] = temp
     return       
 
-def anagram(word, start, end):
+def anagram(word, start, end, total):
     if end - start < 2:    
-        print word
+        res = "".join(word)
+        print res
         swap(word, start, end)
-        print word
+        res = "".join(word)
+        print res
         swap(word, start, end)
-        return
+        return total + 2
     for i in range(start, end + 1):
         swap(word, start, i)
-        anagram(word, start + 1, end)
+        total = anagram(word, start + 1, end, total)
         swap(word, start, i)
-    return
+    return total
     
     
 def main():
-    word = "dog"
+    word = "asdfg"
     word = list(word)
     print word
     print "calling function"
-    anagram(word, 0, len(word) - 1)
+    print anagram(word, 0, len(word) - 1, 0)
     
     
     
