@@ -32,14 +32,19 @@ def largestConsecutiveSequence(A):
             eo = ec
     return so, eo, lo
     
+    
 def main():
     A = []
     for i in range(0, 10):
         A.append(random.randint(-20, 20))
     A = [-12, -2, -18, 13, 10, 15, 9, -4, 10, 9]
     print A
-    print largestConsecutiveSequence(A)
-    i = range(5, -1, -1)
+    x= largestConsecutiveSequence(A)
+    print x
+    print x[2]
+    i = range(6, -1, -1)
+    for j in i:
+        print j
     print i
 
 main()
