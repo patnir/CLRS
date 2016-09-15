@@ -30,7 +30,7 @@ def largestConsecutiveSequence(A):
             lo = lc
             so = sc
             eo = ec
-    return so, eo
+    return so, eo, lo
     
 def main():
     A = []
