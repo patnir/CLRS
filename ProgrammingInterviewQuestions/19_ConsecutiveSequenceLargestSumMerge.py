@@ -7,6 +7,7 @@ Created on Thu Sep 15 08:34:08 2016
 
 # Consecutive largest sum sequence with merge routine
 
+import random
 
 def Merge(A, s, e):
     if s == e:
@@ -31,8 +32,9 @@ def MaxCrossingSubarray(A, low, mid, high):
         curr += A[i]
         if curr > lowSum:
             s = i
-            lowSum += curr
+            lowSum = curr
     highSum = A[mid + 1]
+    curr = highSum
     e = mid + 1
     for j in range(mid + 2, high + 1):
         curr += A[j]
@@ -40,3 +42,37 @@ def MaxCrossingSubarray(A, low, mid, high):
             e = j
             highSum = curr
     return s, e, lowSum + highSum
+
+def largestConsecutiveSequence(A):
+    if len(A) == 0:
+        return None, None
+    lo = A[0]
+    so = 0
+    eo = 0
+    for i in range(len(A)):
+        sc = i
+        ec = i
+        lc = A[i]
+        curr = A[i]
+        for j in range(i + 1, len(A)):
+            curr += A[j]
+            if curr > lc:
+                lc = curr
+                ec = j
+        if lc > lo:
+            lo = lc
+            so = sc
+            eo = ec
+    return so, eo, lo
+
+def main():
+    A = []
+    for i in range(10):
+        A.append(random.randint(-30, 30))
+    #A = [24, -1, -14, 21, -10, 22, 28, -8, -24, 23]
+    print A
+    print largestConsecutiveSequence(A)
+    print Merge(A, 0, len(A) - 1)
+    return
+    
+main()
