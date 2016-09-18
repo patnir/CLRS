@@ -65,14 +65,38 @@ def largestConsecutiveSequence(A):
             eo = ec
     return so, eo, lo
 
+def maxContSub(A):
+    m = A[0]
+    curr = A[0]
+    
+    for i in range(1, len(A)):
+        curr += A[i]
+        if A[i] > curr:
+            curr = A[i]
+        if curr < 0 and m > 0:
+            curr = 0
+        if curr > m:
+            if A[i] > curr:
+                curr = A[i]
+            m = curr
+    return m
+            
+            
+
 def main():
     A = []
     for i in range(10):
         A.append(random.randint(-30, 30))
-    #A = [24, -1, -14, 21, -10, 22, 28, -8, -24, 23]
+    #[-29, -21, 4, 5, -26, -29, -27, -29, -2, -23]
+    #[-22, -9, -1, 10, -22, 8, 23, -5, -7, -25]
+        
+    A = [-22, -9, -1, 10, -22, 8, 23, -5, -7, -25]
+    A = [-8, -7, -6, -5, -5, -3]
     print A
     print largestConsecutiveSequence(A)
     print Merge(A, 0, len(A) - 1)
+    print maxContSub(A)
+    
     return
     
 main()

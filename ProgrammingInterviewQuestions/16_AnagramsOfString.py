@@ -39,7 +39,7 @@ def swap(n, start, end):
     return       
 
 def anagram(word, start, end, total):
-    if end - start < 2:    
+    if end - start == 1:    
         res = "".join(word)
         print res
         swap(word, start, end)
@@ -55,7 +55,7 @@ def anagram(word, start, end, total):
     
     
 def main():
-    word = "asdfg"
+    word = "dog "
     word = list(word)
     print word
     print "calling function"
