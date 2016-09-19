@@ -1,0 +1,16 @@
+// These are notes I will take for solving programming questions
+
+def modifyMatrix(A):
+	l = len(A) + 2
+	b = len(A[0]) + 2
+	new_mat = []
+	[new_mat.append(b * [0]) for x in range(l)]
+	for i in range(l):
+		for j in range(b):
+			if i == 0 or i == l - 1:
+				new_mat[i][j] = -1
+			elif j == 0 or j = b - 1:
+				new_mat[i][j] = -1
+			else:
+				new_mat[i][j] = A[i - 1][j - 1]
+	return new_mat
