@@ -30,6 +30,9 @@ def main():
     
     N = expandMatrix(A)
     printMat(N)
+    a = set()
+    a.add('a')
+    print a
     print 
     
 main()
