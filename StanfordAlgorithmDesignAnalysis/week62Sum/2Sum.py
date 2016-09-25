@@ -70,9 +70,9 @@ def TwoSum(A):
     return total
     
 def main():
-    #A = loadData()
-    #print len(A)    
-    A = [-10, -5, -3, -2, 0, 5, 6]
+    A = loadData()
+    print len(A)    
+    #A = [-10, -5, -3, -2, 0, 5, 6]
     print TwoSum(A)
     
 main()
