@@ -19,14 +19,14 @@ def permutations(word, s, e):
         return
     for i in range(s, e + 1):
         #permutations(word, i, e)
-        swap(word, s, i)
+        swap(word, i, s)
         permutations(word, s + 1, e)
-        swap(word, s, i)
+        swap(word, i, s)
         
     return
     
 def main():
-    word = "dog"
+    word = "ABC"
     word = list(word)
     print word
     permutations(word, 0, len(word) - 1)
