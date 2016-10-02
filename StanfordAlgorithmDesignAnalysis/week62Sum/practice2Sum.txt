@@ -1,0 +1,23 @@
+
+uniqueSorted = []
+
+low = -10000
+high = 	
+
+
+# binarySearch()
+
+# low < i + x < high
+# low - i < x < high - i
+
+total = 0
+
+for i in range(len(uniqueSorted)):
+		smallTarget = low - US[i]
+		bigTarget = high - US[i]
+		found1 = -1
+		found2 = -1
+		
+
+		
+		target += 1
