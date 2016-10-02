@@ -8,6 +8,10 @@ Created on Sat Oct 01 21:00:45 2016
 # modifies binary
 
 def modifiedBinarySearch(A, target, start, end):
+    if target < A[start]:
+        return start
+    if target > A[end]:
+        return end
     while start <= end:
         mid = (start + end) / 2
         print A[mid]
