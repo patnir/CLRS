@@ -34,6 +34,8 @@ def binarySearch(A, target, start, end):
         mid = (start + end) / 2
         if A[mid] == target:
             return mid
+        if A[mid] > target and A[mid - 1] < target:
+            return mid
         if A[mid] > target:
             start = mid + 1
         else:
@@ -44,7 +46,7 @@ def test(A):
     lowRange = -10
     highRange = 10
     for i in A:
-        
+        return
     print A
     
 def main():
