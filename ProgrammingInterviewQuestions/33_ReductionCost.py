@@ -78,24 +78,30 @@ class Heap():
         print self.array
  
 
+# O(n log(n)) implementation using a headp:
+
 def reductionCost(A):
     heap = Heap()
+    
+    # Following for loop takes O(n log(n)) time    
     for i in A:
-        heap.insert(i)
+        heap.insert(i) # O(log(n))
+
     cost = 0
     heap.printHeap()
+
+    # Following for loop takes O(n log(n)) time    
+    
     while heap.end > 1:
         heap.printHeap()
-        first = heap.extractMin()
-        second = heap.extractMin()
-        heap.insert(first + second)
+        first = heap.extractMin() # O(log(n))
+        second = heap.extractMin() # O(log(n))
+        heap.insert(first + second) # O(log(n))
         cost += first + second
-        heap.printHeap()
-    print cost
-    return       
+    return cost   
         
 def main():
     A =  [4, 3, 2, 1]
-    reductionCost(A)
+    print reductionCost(A)
         
 main()
