@@ -11,13 +11,14 @@ import random
 
 class Heap():
     def __init__(self):
-        self.array = [0] * 30
+        self.array = [None] * 30
         self.start = 0
         self.end = 0
         
     def insert(self, val):
         self.array[self.end] = val
-        currIndex = self.end + 1
+        self.end += 1
+        currIndex = self.end
         parentIndex = currIndex / 2
         #print "out", currIndex, parentIndex
         parent = self.array[parentIndex - 1]
@@ -29,11 +30,9 @@ class Heap():
             currIndex = parentIndex
             parentIndex = currIndex / 2
             parent = self.array[parentIndex - 1]
-        self.end += 1
         return
         
     def checkHeapProperty(self):
-        print "end", self.end
         currIndex = self.end
         parentIndex = currIndex / 2
         while parentIndex > 0:
@@ -44,7 +43,16 @@ class Heap():
         return
         
     def extractMin(self):
-        return
+        if self.end == 0:
+            return None
+        toRemove = self.array[0]
+        self.end -= 1
+        self.array[0] = self.array[self.end]
+        self.array[self.end] = None
+        
+        self.printHeap()
+        
+        return toRemove
         
     def printHeap(self):
         print self.array
@@ -57,5 +65,6 @@ def main():
         heap.insert(val)
         heap.printHeap()
         heap.checkHeapProperty()
+    heap.extractMin()
         
 main()
