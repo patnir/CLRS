@@ -10,8 +10,12 @@ Created on Sun Oct 02 18:52:48 2016
 # heap sort
 
 class Heap():
+    
+    # heap is currently not dynamic, I can make it dynamic by doubling the 
+    # size whenever the size exceeds 1000    
+    
     def __init__(self):
-        self.array = [None] * 30
+        self.array = [None] * 1000
         self.start = 0
         self.end = 0
         
@@ -88,12 +92,10 @@ def reductionCost(A):
         heap.insert(i) # O(log(n))
 
     cost = 0
-    heap.printHeap()
 
     # Following for loop takes O(n log(n)) time    
     
     while heap.end > 1:
-        heap.printHeap()
         first = heap.extractMin() # O(log(n))
         second = heap.extractMin() # O(log(n))
         heap.insert(first + second) # O(log(n))
