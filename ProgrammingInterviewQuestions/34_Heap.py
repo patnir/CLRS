@@ -45,7 +45,9 @@ class Heap():
     def extractMin(self):
         if self.end == 0:
             return None
+            
         toRemove = self.array[0]
+        
         self.end -= 1
         self.array[0] = self.array[self.end]
         self.array[self.end] = None
@@ -54,35 +56,23 @@ class Heap():
         child1Index = currIndex * 2
         child2Index = currIndex * 2 + 1
         
-        while child1Index <= self.end and (self.array[currIndex - 1] > self.array[child1Index - 1] or self.array[currIndex - 1] > self.array[child2Index - 1]):
+        while child1Index <= self.end:
+        #while child1Index <= self.end and (self.array[currIndex - 1] > self.array[child1Index - 1] or self.array[currIndex - 1] > self.array[child2Index - 1]):
             if child2Index > self.end:
                 child2Index = child1Index
-            if self.array[child1Index - 1] <= self.array[child2Index - 1]:
-                self.array[child1Index - 1], self.array[currIndex - 1] = self.array[currIndex - 1], self.array[child1Index - 1] 
-                currIndex = child1Index
-                child1Index = currIndex * 2
-                child2Index = currIndex * 2 + 1
+            if (self.array[currIndex - 1] > self.array[child1Index - 1] or self.array[currIndex - 1] > self.array[child2Index - 1]):
+                if self.array[child1Index - 1] <= self.array[child2Index - 1]:
+                    self.array[child1Index - 1], self.array[currIndex - 1] = self.array[currIndex - 1], self.array[child1Index - 1] 
+                    currIndex = child1Index
+                    child1Index = currIndex * 2
+                    child2Index = currIndex * 2 + 1
+                else:
+                    self.array[child2Index - 1], self.array[currIndex - 1] = self.array[currIndex - 1], self.array[child2Index - 1] 
+                    currIndex = child2Index
+                    child1Index = currIndex * 2
+                    child2Index = currIndex * 2 + 1
             else:
-                self.array[child2Index - 1], self.array[currIndex - 1] = self.array[currIndex - 1], self.array[child2Index - 1] 
-                currIndex = child2Index
-                child1Index = currIndex * 2
-                child2Index = currIndex * 2 + 1
+                child1Index = self.end + 1
         
-        self.printHeap()
         self.checkHeapProperty()
         return toRemove
-        
-    def printHeap(self):
-        print self.array
-        
-        
-def main():
-    heap = Heap()
-    for i in range(20):
-        val = random.randint(10, 90)
-        heap.insert(val)
-        heap.printHeap()
-        heap.checkHeapProperty()
-    heap.extractMin()
-        
-main()
