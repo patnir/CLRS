@@ -7,8 +7,6 @@ Created on Sun Oct 02 21:24:40 2016
 
 # heap sort
 
-import random
-
 class Heap():
     def __init__(self):
         self.array = [None] * 30
