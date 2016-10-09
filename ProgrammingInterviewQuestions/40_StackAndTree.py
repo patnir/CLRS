@@ -20,7 +20,7 @@ class Node():
     def Inorder(self):
         if self.left != None:
             self.left.Inorder()
-        print self.data
+        print self.data,
         if self.right != None:
             self.right.Inorder()
         return
@@ -37,8 +37,10 @@ class StackNode():
 class Stack():
     def __init__(self):
         self.head = None
+        self.total = 0
         
     def push(self, tree):
+        self.total += 1
         node = StackNode(tree)
         
         if self.head == None:
@@ -55,8 +57,8 @@ class Stack():
         toRet = self.head
         self.head = self.head.next
         toRet.next = None
-        
-        return toRet
+        self.total -= 1
+        return toRet.tree
         
     def printStack(self):
         if self.head == None:
@@ -77,7 +79,18 @@ class Stack():
  
 
 def stackInorder(root):
-    
+    if root == None:
+        return
+    s = Stack()
+    curr = root
+    while curr != None or s.isEmpty() == False:
+        while curr != None:
+            s.push(curr)
+            curr = curr.left
+        n = s.pop()
+        print n.data,
+        curr = n.right
+    print
     return
     
     
@@ -97,6 +110,22 @@ def depthFirst(root):
             s.append(curr.right)
         if curr.left != None:
             s.append(curr.left)
+    print
+    return
+    
+def depthFirstWithStack(root):
+    if root == None:
+        return
+    s = Stack()
+    s.push(root)
+    
+    while s.isEmpty() == False:
+        curr = s.pop()
+        print curr.data,
+        if curr.right != None:
+            s.push(curr.right)
+        if curr.left != None:
+            s.push(curr.left)
     print
     return
        
@@ -123,8 +152,11 @@ def main():
     root.right.right = Node(7)
     root.right.left = Node(8)
     root.Inorder()
-        
+    print
+    stackInorder(root)
+
     depthFirst(root)
+    depthFirstWithStack(root)
 
 main()
         
