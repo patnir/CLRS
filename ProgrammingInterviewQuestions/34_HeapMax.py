@@ -9,7 +9,7 @@ Created on Sun Oct 02 21:24:40 2016
 
 import random
 
-class Heap():
+class HeapMax():
     def __init__(self):
         self.array = [None] * 30
         self.start = 0
@@ -79,7 +79,7 @@ class Heap():
         
 
 def main():
-    h = Heap()
+    h = HeapMax()
     for i in range(20):
         val = random.randint(10, 90)
         print val
