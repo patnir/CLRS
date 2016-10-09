@@ -9,18 +9,37 @@ Created on Sat Oct 08 19:41:47 2016
 
 import random
 
-class StackNode():
-    def __init__(self, val):
-        self.val = val
-        self.next = None
+# changing to stack for tree
 
+class Node():
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+        
+    def Inorder(self):
+        if self.left != None:
+            self.left.Inorder()
+        print self.data
+        if self.right != None:
+            self.right.Inorder()
+        return
+
+class StackNode():
+    def __init__(self, tree = None):
+        self.tree = tree
+        self.next = None
+        
+    def printTree(self):
+        print self.tree
+        return
 
 class Stack():
     def __init__(self):
         self.head = None
         
-    def push(self, val):
-        node = StackNode(val)
+    def push(self, tree):
+        node = StackNode(tree)
         
         if self.head == None:
             self.head = node
@@ -44,7 +63,7 @@ class Stack():
             return
         curr = self.head
         while curr != None:
-            print str(curr.val) + "->",
+            print str(curr.printTree()) + "->",
             curr = curr.next
             
         print
@@ -57,7 +76,7 @@ class Stack():
         return False
         
 def main():
-    stack = Stack()
+    '''
     for i in range(20):
         val = random.randint(-200, 200)
         print val
@@ -70,6 +89,18 @@ def main():
         print ret.val
         stack.printStack()
     stack.printStack()
+    '''
+    
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.left.right = Node(5)
+    root.Inorder()
+    
+    stack = Stack()
+    
+    
     
 
 main()
