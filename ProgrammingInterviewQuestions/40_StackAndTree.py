@@ -26,7 +26,7 @@ class Node():
         return
 
 class StackNode():
-    def __init__(self, tree = None):
+    def __init__(self, tree = Node(0)):
         self.tree = tree
         self.next = None
         
@@ -74,7 +74,32 @@ class Stack():
         if self.head == None:
             return True
         return False
-        
+ 
+
+def stackInorder(root):
+    
+    return
+    
+    
+def breadthFirst(root):
+    return
+    
+    
+def depthFirst(root):
+    if root == None:
+        return
+    s = []
+    s.append(root)
+    while len(s) != 0:
+        curr = s.pop()
+        print curr.data, 
+        if curr.right != None:
+            s.append(curr.right)
+        if curr.left != None:
+            s.append(curr.left)
+    print
+    return
+       
 def main():
     '''
     for i in range(20):
@@ -88,20 +113,18 @@ def main():
         ret = stack.pop()
         print ret.val
         stack.printStack()
-    stack.printStack()
-    '''
+    stack.printStack()    '''
     
     root = Node(1)
     root.left = Node(2)
     root.right = Node(3)
     root.left.left = Node(4)
     root.left.right = Node(5)
+    root.right.right = Node(7)
+    root.right.left = Node(8)
     root.Inorder()
-    
-    stack = Stack()
-    
-    
-    
+        
+    depthFirst(root)
 
 main()
         
