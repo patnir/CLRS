@@ -1,7 +1,7 @@
 class HeapMin():
     def __init__(self):
         self.start = 0
-        self.array = [None] * 10
+        self.array = [None] * 100000
         self.end = 0
         
     def heapRoot(self):
@@ -69,13 +69,13 @@ class HeapMin():
             else:
                 child1Index = self.end + 1
         
-        self.checkHeapProperty()
+        #self.checkHeapProperty()
         return toRemove
 
 class HeapMax():
     def __init__(self):
         self.start = 0
-        self.array = [None] * 10
+        self.array = [None] * 100000
         self.end = 0
         
         
@@ -144,7 +144,7 @@ class HeapMax():
             else:
                 child1Index = self.end + 1
         
-        self.checkHeapProperty()
+        #self.checkHeapProperty()
         return toRemove
     
 
@@ -173,22 +173,16 @@ def medianMaint(n):
             else:
                 heapMin.insert(val)
             if heapMax.getSize() >= heapMin.getSize() + 2:
-                maxp = heapMax.extractMax()
-                heapMin.insert(maxp)
+                heapMin.insert(heapMax.extractMax())
             elif heapMin.getSize() >= heapMax.getSize() + 2:
-                minp = heapMin.extractMin()
-                heapMax.insert(minp)
+                heapMax.insert(heapMin.extractMin())
             if heapMax.getSize() == heapMin.getSize():
-                maxp = heapMin.heapRoot()
-                minp = heapMax.heapRoot()
-                mid = (maxp + minp) / 2.0
+                mid = (heapMin.heapRoot() + heapMax.heapRoot()) / 2.0
             else:
                 if heapMax.getSize() > heapMin.getSize():
                     mid = heapMax.heapRoot() / 1.0
                 else:
                     mid = heapMin.heapRoot() / 1.0
-            print heapMax.array
-            print heapMin.array
                     
             print mid
             
