@@ -1,17 +1,14 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Oct 09 17:32:29 2016
-
-@author: Rahul Patni
-"""
-
-# heap median maintenance
-
 class HeapMin():
     def __init__(self):
-        self.array = [None] * 30
         self.start = 0
+        self.array = [None] * 10
         self.end = 0
+        
+    def heapRoot(self):
+        return self.array[0]
+        
+    def getSize(self):
+        return self.end
         
     def insert(self, val):
         self.array[self.end] = val
@@ -77,9 +74,16 @@ class HeapMin():
 
 class HeapMax():
     def __init__(self):
-        self.array = [None] * 30
         self.start = 0
+        self.array = [None] * 10
         self.end = 0
+        
+        
+    def heapRoot(self):
+        return self.array[0]
+        
+    def getSize(self):
+        return self.end
         
     def insert(self, val):
         self.array[self.end] = val
@@ -151,10 +155,10 @@ def medianMaint(n):
         val = map(int, raw_input().strip().split(' '))
         val = val[0]
         
-        if heapMax.end == 0:
+        if n == 0:
             heapMax.insert(val)
             print val / 1.0
-        elif heapMin.end == 0:
+        elif n == 1:
             maxp = heapMax.extractMax()
             if maxp > val:
                 heapMin.insert(maxp)
@@ -164,25 +168,27 @@ def medianMaint(n):
                 heapMax.insert(maxp)
             print (maxp + val) / 2.0
         else:
-            if val <= heapMax.array[0]:
+            if val <= heapMax.heapRoot():
                 heapMax.insert(val)
             else:
                 heapMin.insert(val)
-            if heapMax.end >= heapMin.end + 2:
+            if heapMax.getSize() >= heapMin.getSize() + 2:
                 maxp = heapMax.extractMax()
                 heapMin.insert(maxp)
-            elif heapMin.end >= heapMax.end + 2:
+            elif heapMin.getSize() >= heapMax.getSize() + 2:
                 minp = heapMin.extractMin()
                 heapMax.insert(minp)
-            if (heapMax.end + heapMin.end) % 2 == 0:
-                maxp = heapMin.array[0]
-                minp = heapMax.array[0]
+            if heapMax.getSize() == heapMin.getSize():
+                maxp = heapMin.heapRoot()
+                minp = heapMax.heapRoot()
                 mid = (maxp + minp) / 2.0
             else:
-                if heapMax.end > heapMax.end:
-                    mid = heapMax.array[0] / 1.0
+                if heapMax.getSize() > heapMin.getSize():
+                    mid = heapMax.heapRoot() / 1.0
                 else:
-                    mid = heapMin.array[0] / 1.0
+                    mid = heapMin.heapRoot() / 1.0
+            print heapMax.array
+            print heapMin.array
                     
             print mid
             
