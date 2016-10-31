@@ -14,6 +14,8 @@ class Node():
         self.children.append(Node(c))
         
     def printChildren(self):
+        print self.c, 
+
         if len(self.children) == 0:
             return
         for i in self.children:
