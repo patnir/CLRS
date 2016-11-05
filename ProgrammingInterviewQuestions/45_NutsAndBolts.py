@@ -24,19 +24,21 @@ def shuffleArray(A, size):
         place2 = random.randint(0, size - 1)
         A[place1], A[place2] = A[place2], A[place1]
     
-def quickMatch(N, B):
+def quickMatch(N, B, size):
     
     return    
     
 def main():
-    N, B = createArrays(10)
+    size = 10
+    N, B = createArrays(size)
     print N
     print B
     print "after shuffle"
-    shuffleArray(N, 10)
-    shuffleArray(B, 10)
+    shuffleArray(N, size)
+    shuffleArray(B, size)
     print N
     print B
+    quickMatch(N, B, size)
     return
     
     
