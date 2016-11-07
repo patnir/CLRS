@@ -120,6 +120,21 @@ class Heap():
     def isEmpty(self):
         return self.size == 0     
         
+    def newDelete(self, target):
+        if self.isEmpty == True:
+            print "Empty array"
+            return None
+        i = 0
+        while i < self.size and target != self.array[i]:
+            i += 1    
+        if self.array[i] == None:
+            print "Not found"
+            return None    
+        print target, "found at", i
+        self.size -= 1
+        self.array[i] = self.array[self.size]
+        self.array[self.size] = None
+        self.downwardHeapify(i)
         
     def delete(self, target):
         if self.isEmpty == True:
@@ -202,8 +217,7 @@ def main():
     print "extracting"
     
     for i in s:
-        val = heap.newExtractMin()
-        print "minimum value", val
+        heap.newDelete(i)
         print heap.array
         heap.checkHeapProperty()
     
