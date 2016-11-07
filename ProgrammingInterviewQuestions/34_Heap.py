@@ -62,17 +62,27 @@ class Heap():
         temp = self.array[index]
         notOrdered = True
         parent = index
-        while notOrdered and parent > self.size / 2:
+        while notOrdered and parent < self.size / 2:
             child = (parent + 1) * 2 - 1
-            if child > self.size - 1 and self.array[child] > self.array[child + 1]:
+            if child < self.size - 1 and self.array[child] > self.array[child + 1]:
                 child += 1
-            if self.array[child] >= self.array[parent]:
+            if temp <= self.array[child]:
                 notOrdered = False
             else:
-                self.array[child] = self.array[parent]
+                self.array[parent] = self.array[child]
                 parent = child
         self.array[parent] = temp
         return
+        
+    def newExtractMin(self):
+        if self.size == 0:
+            return None
+        toRemove = self.array[0]
+        self.size -= 1
+        self.array[0] = self.array[self.size]
+        self.array[self.size] = None
+        self.downwardHeapify(0)
+        return toRemove
          
     def extractMin(self):
         if self.size == 0:
@@ -192,7 +202,8 @@ def main():
     print "extracting"
     
     for i in s:
-        heap.delete(i)
+        val = heap.newExtractMin()
+        print "minimum value", val
         print heap.array
         heap.checkHeapProperty()
     
