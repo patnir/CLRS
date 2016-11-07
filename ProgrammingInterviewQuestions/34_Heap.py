@@ -136,6 +136,13 @@ class Heap():
         self.array[self.size] = None
         self.downwardHeapify(i)
         
+    def heapify(self, array):
+        self.size = len(array)
+        for i in range(len(array)):
+            self.array[i] = array[i]
+        for i in range(len(array) / 2, -1, -1):
+            self.downwardHeapify(i)
+        
     def delete(self, target):
         if self.isEmpty == True:
             print "Empty array"
@@ -151,13 +158,7 @@ class Heap():
         self.size -= 1
         self.array[i] = self.array[self.size]
         self.array[self.size] = None        
-        
-        '''
-        currIndex = i + 1
-        child1Index = currIndex * 2
-        child2Index = child1Index + 1
-        '''
-        
+                
         curr = i + 1
         child1 = curr * 2
         child2 = child1 + 1
@@ -178,25 +179,7 @@ class Heap():
             
             if child2 > self.size:
                 child2 = child1
-        '''        
-        while child1Index <= self.size:
-            
-            if child2Index > self.size:
-                child2Index = child1Index
-                
-            if (self.array[currIndex - 1] > self.array[child1Index - 1] or self.array[currIndex - 1] > self.array[child2Index - 1]):
-                if self.array[child1Index - 1] <= self.array[child2Index - 1]:
-                    self.array[child1Index - 1], self.array[currIndex - 1] = self.array[currIndex - 1], self.array[child1Index - 1] 
-                    currIndex = child1Index
-                    
-                else:
-                    self.array[child2Index - 1], self.array[currIndex - 1] = self.array[currIndex - 1], self.array[child2Index - 1] 
-                    currIndex = child2Index
-                    
-                child1Index = currIndex * 2
-                child2Index = currIndex * 2 + 1
-            else:
-                child1Index = self.size + 1'''
+       
         return
             
        
@@ -220,10 +203,47 @@ def main():
         heap.newDelete(i)
         print heap.array
         heap.checkHeapProperty()
+        
+    print "\n\n\n"
+    print "new shit"
+    print "\n\n\n\n"       
+        
+    h = Heap()
+    h.heapify(s)
+    print h.array
+    h.checkHeapProperty()
+    
+    for i in range(h.size):
+        val = h.extractMin()
+        print val 
+        h.checkHeapProperty()
     
     '''while heap.isEmpty() != True:
         val = heap.extractMin()
         print val'''
         
 main()
-    
+
+
+'''      
+        currIndex = i + 1
+        child1Index = currIndex * 2
+        child2Index = child1Index + 1
+        while child1Index <= self.size:
+            
+            if child2Index > self.size:
+                child2Index = child1Index
+                
+            if (self.array[currIndex - 1] > self.array[child1Index - 1] or self.array[currIndex - 1] > self.array[child2Index - 1]):
+                if self.array[child1Index - 1] <= self.array[child2Index - 1]:
+                    self.array[child1Index - 1], self.array[currIndex - 1] = self.array[currIndex - 1], self.array[child1Index - 1] 
+                    currIndex = child1Index
+                    
+                else:
+                    self.array[child2Index - 1], self.array[currIndex - 1] = self.array[currIndex - 1], self.array[child2Index - 1] 
+                    currIndex = child2Index
+                    
+                child1Index = currIndex * 2
+                child2Index = currIndex * 2 + 1
+            else:
+                child1Index = self.size + 1'''    
