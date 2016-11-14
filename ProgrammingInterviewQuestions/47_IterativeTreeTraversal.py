@@ -105,6 +105,23 @@ def  recursionPostorder(node):
     print node.info
 
 def interationPostorder(node):
+    if node == None:
+        return
+    s1 = Stack()
+    s2 = Stack()
+    curr = node
+    s1.push(curr)
+    while s1.isEmpty() == False:
+        pop = s1.pop()
+        s2.push(pop.info)
+
+        s1.push(pop.info.left)
+
+        s1.push(pop.info.right)
+    curr = s2.pop()
+    while curr != None:
+        print curr.info.info
+        curr = s2.pop()
     
     return
 
