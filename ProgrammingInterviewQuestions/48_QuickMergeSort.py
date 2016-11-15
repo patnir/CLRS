@@ -78,18 +78,23 @@ def newMergeSort(A, start, end):
 
 def newMerge(A, start, mid, end):
     temp = [0] * (end - start + 1)
-    for i in range(start, end + 1):
-        temp[i] = A[i]
+    for i in range(len(temp)):
+        temp[i] = A[i + start]
     i = start
     j = mid + 1
     for k in range(start, end + 1):
-        if (i > mid):
-            A[k] = temp[j]
+        if i > mid:
+            A[k] = temp[j - start]
             j += 1
-        elif (j > end):
-            A[k] = temp[i]
+        elif j > end:
+            A[k] = temp[i - start]
             i+= 1
-        
+        elif temp[i - start] < temp[j - start]:
+            A[k] = temp[i - start]
+            i += 1 
+        else:
+            A[k] = temp[j - start]
+            j += 1
     return    
 
 def main():
