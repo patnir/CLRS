@@ -67,6 +67,31 @@ def MergeSort(A, start, end):
     merge(A, start, mid, end)
     return
     
+def newMergeSort(A, start, end):
+    if start >= end:
+        return
+    mid = (start + end) / 2
+    newMergeSort(A, start, mid)
+    newMergeSort(A, mid + 1, end)
+    newMerge(A, start, mid, end)
+    return
+
+def newMerge(A, start, mid, end):
+    temp = [0] * (end - start + 1)
+    for i in range(start, end + 1):
+        temp[i] = A[i]
+    i = start
+    j = mid + 1
+    for k in range(start, end + 1):
+        if (i > mid):
+            A[k] = temp[j]
+            j += 1
+        elif (j > end):
+            A[k] = temp[i]
+            i+= 1
+        
+    return    
+
 def main():
     size = 10
     A = [0]* size
@@ -78,7 +103,7 @@ def main():
     B.sort()
     print B
     
-    MergeSort(C, 0, len(C) - 1)
+    newMergeSort(C, 0, len(C) - 1)
     print "after merge sort"
 
     print C
