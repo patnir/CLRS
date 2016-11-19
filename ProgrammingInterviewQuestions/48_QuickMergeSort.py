@@ -77,6 +77,7 @@ def newMergeSort(A, start, end):
     return
 
 def newMerge(A, start, mid, end):
+    print start, mid, end
     temp = [0] * (end - start + 1)
     for i in range(len(temp)):
         temp[i] = A[i + start]
@@ -97,6 +98,18 @@ def newMerge(A, start, mid, end):
             j += 1
     return    
 
+def iterativeMergeSort(A):
+    size = 1
+    n = len(A)
+    while size < n:
+        i = 0
+        while i < n - size:
+            newMerge(A, i, i + size - 1, min(i + 2 *size - 1, n - 1))
+            i = i + 2 * size
+        size = 2 * size
+            
+    return
+
 def main():
     size = 10
     A = [0]* size
@@ -105,6 +118,7 @@ def main():
     print A
     B = list(A)
     C = list(A)
+    D = list(A)
     B.sort()
     print B
     
@@ -114,7 +128,12 @@ def main():
     print C
     print "after quick sort"
     Quicksort(A, 0, len(A) - 1)
-    print A    
+    print A   
+    
+    iterativeMergeSort(D)
+    print "after iterative merge sort"
+    print D
+    
     return
     
     
